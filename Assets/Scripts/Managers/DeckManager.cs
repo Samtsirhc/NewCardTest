@@ -44,6 +44,52 @@ public class DeckManager : Singleton<DeckManager>
             myCardInFlow[i].transform.position = cardPoses[i].transform.position;
             myCardInFlow[i].GetComponent<MyCard>().position = i;
         }
+        //MoveForward();
+        //List<GameObject> _flow = new List<GameObject>();
+        //foreach (var item in myCardInFlow)
+        //{
+        //    _flow.Add(item);
+        //}
+        //MoveForward();
+        //myCardInFlow = new List<GameObject>();
+        //for (int i = 0; i < _flow.Count; i++)
+        //{
+        //    for (int j = 0; j < _flow.Count; j++)
+        //    {
+        //        if (_flow[j].GetComponent<MyCard>().position == i)
+        //        {
+        //            myCardInFlow.Add(_flow[j]);
+        //            continue;
+        //        }
+        //    }
+        //    myCardInFlow[i].transform.position = cardPoses[i].transform.position;
+        //}
+    }
+
+    public void MoveForward()
+    {
+        for (int i = 0; i < myCardInFlow.Count; i++)
+        {
+            if (myCardInFlow[i].GetComponent<MyCard>().freezed >= 1)
+            {
+                for (int j = i + 1; j < myCardInFlow.Count; j++)
+                {
+                    if (myCardInFlow[j].GetComponent<MyCard>().position == 0)
+                    {
+                        continue;
+                    }
+                    if (myCardInFlow[j].GetComponent<MyCard>().freezed <= 0)
+                    {
+                        myCardInFlow[j].GetComponent<MyCard>().position -= 1;
+                        continue;
+                    }
+                }
+            }
+            else
+            {
+                myCardInFlow[i].GetComponent<MyCard>().position -= 1;
+            }
+        }
     }
 
     public void DrawCard()
@@ -83,6 +129,18 @@ public class DeckManager : Singleton<DeckManager>
         myCardInFlow.Remove(myCard.gameObject);
         Destroy(myCard.gameObject);
         SetCardPosition();
+    }
+
+    public void PlayFirstCard()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            if (myCardInFlow[0].GetComponent<MyCard>().freezed <= 0)
+            {
+                myCardInFlow[0].GetComponent<MyCard>().PlayCard();
+                return;
+            }
+        }
     }
 
 }

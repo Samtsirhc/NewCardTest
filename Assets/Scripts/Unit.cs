@@ -9,6 +9,7 @@ public class Unit : MonoBehaviour
     virtual public int armor { get; set; }
     virtual public int anger { get; set; }
     virtual public int calm { get; set; }
+    virtual public int cold { get; set; }
 
     public GameObject hpUI;
     public GameObject armorUI;

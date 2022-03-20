@@ -169,7 +169,6 @@ GameObject:
   - component: {fileID: 7446870095420578083}
   - component: {fileID: 7446870095420578086}
   - component: {fileID: 7446870095420578081}
-  - component: {fileID: 7446870095420578080}
   m_Layer: 5
   m_Name: Unit
   m_TagString: Untagged
@@ -240,26 +239,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7446870095420578080
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7446870095420578082}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 687c39f8f382105479325bcc72ffc9ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hp: 0
-  armor: 0
-  anger: 0
-  calm: 0
-  hpUI: {fileID: 7446870095824858501}
-  armorUI: {fileID: 7446870096196921043}
-  angerUI: {fileID: 7446870096235155293}
-  calmUI: {fileID: 7446870097299400465}
 --- !u!1 &7446870095614919588
 GameObject:
   m_ObjectHideFlags: 0
@@ -667,7 +646,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventType: 10002
-  host: {fileID: 7446870095420578080}
+  host: {fileID: 0}
 --- !u!1 &7446870095845669062
 GameObject:
   m_ObjectHideFlags: 0
@@ -1154,7 +1133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventType: 10003
-  host: {fileID: 7446870095420578080}
+  host: {fileID: 0}
 --- !u!1 &7446870096221036264
 GameObject:
   m_ObjectHideFlags: 0
@@ -1404,7 +1383,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventType: 10004
-  host: {fileID: 7446870095420578080}
+  host: {fileID: 0}
 --- !u!1 &7446870096345842981
 GameObject:
   m_ObjectHideFlags: 0
@@ -1887,4 +1866,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventType: 10005
-  host: {fileID: 7446870095420578080}
+  host: {fileID: 0}

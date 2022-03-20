@@ -9,6 +9,7 @@ public enum E_EventType
     NEW_TURN_START = 10002,
     CARD_USED = 10003,
     PLAY_ONE_CARD = 10004,
+    PLAY_ONE_CARD_IN_TURN = 10005,
 
     // 设置属性
     SET_HP = 20000,

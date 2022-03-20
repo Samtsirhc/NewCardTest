@@ -12,17 +12,24 @@ public class BattleManager : Singleton<BattleManager>
     public Unit enemy;
     public CardType comboColor;
     public int comboCount = 0;
+    public int playCardTime;
+    public int maxPlayerCardTime;
     // Start is called before the first frame update
 
     override protected void Awake()
     {
         base.Awake();
         EventCenter.AddListener<MyCard>(E_EventType.CARD_USED, AfterCardUsed);
+        EventCenter.AddListener(E_EventType.PLAY_ONE_CARD_IN_TURN, PlayCardInTurn);
+        EventCenter.AddListener(E_EventType.END_TURN, OnTurnEnd);
+        playCardTime = maxPlayerCardTime;
     }
 
     private void OnDestroy()
     {
         EventCenter.RemoveListener<MyCard>(E_EventType.CARD_USED, AfterCardUsed);
+        EventCenter.RemoveListener(E_EventType.PLAY_ONE_CARD_IN_TURN, PlayCardInTurn);
+        EventCenter.RemoveListener(E_EventType.END_TURN, OnTurnEnd);
     }
     void Start()
     {
@@ -40,6 +47,19 @@ public class BattleManager : Singleton<BattleManager>
         SetComboCount(card.cardType);
     }
 
+    public void PlayCardInTurn()
+    {
+        if (playCardTime <= 0)
+        {
+            TipManager.ShowTip("没有打牌次数了！！");
+            return;
+        }
+        else
+        {
+            playCardTime -= 1;
+            DeckManager.Instance.PlayFirstCard();
+        }
+    }
     void SetComboCount(CardType card_type)
     {
         if (comboColor == card_type)
@@ -51,5 +71,11 @@ public class BattleManager : Singleton<BattleManager>
             comboColor = card_type;
             comboCount = 1;
         }
+    }
+
+    public void OnTurnEnd()
+    {
+        playCardTime = maxPlayerCardTime;
+        SetComboCount(CardType.BASIC);
     }
 }

@@ -25,11 +25,32 @@ public class Player : Unit
         }
     }
     private int _anger;
+    override public int calm
+    {
+        get
+        {
+            return _calm;
+        }
+        set
+        {
+            if (value <= 3)
+            {
+                _anger = 3;
+            }
+            else
+            {
+                _calm = value;
+            }
+            SetUIValue();
+        }
+    }
+    private int _calm;
 
     // Start is called before the first frame update
     protected override void Start()
     {
         _anger = 10;
+        _calm = 3;
         base.Start();
     }
     // Update is called once per frame
