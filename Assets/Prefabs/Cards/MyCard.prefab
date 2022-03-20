@@ -92,6 +92,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   position: 0
+  description: 
+  cardName: "\u793A\u4F8B\u5361\u724C"
+  originalDescription: "\u793A\u4F8B\u5361\u724C\u7684\u63CF\u8FF0"
+  tureDescription: "\u54C8\u54C8\u54C8\u54C8\u54C8\u54C8\u54C8\u54C8"
 --- !u!114 &534252300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,7 +142,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2743264982341635680}
         m_TargetAssemblyTypeName: MyCard, Assembly-CSharp
-        m_MethodName: DeleteSelf
+        m_MethodName: OnCardClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -159,6 +163,7 @@ GameObject:
   - component: {fileID: 2743264983245276358}
   - component: {fileID: 2743264983245276344}
   - component: {fileID: 2743264983245276345}
+  - component: {fileID: 5942445010554831028}
   m_Layer: 5
   m_Name: NameText
   m_TagString: Untagged
@@ -227,6 +232,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u5361\u724C\u540D\u79F0"
+--- !u!114 &5942445010554831028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2743264983245276359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e9e41cec42ab0e499d2780ea377aef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myCard: {fileID: 2743264982341635692}
 --- !u!1 &2743264984116767890
 GameObject:
   m_ObjectHideFlags: 0
@@ -238,6 +256,7 @@ GameObject:
   - component: {fileID: 2743264984116767893}
   - component: {fileID: 2743264984116767895}
   - component: {fileID: 2743264984116767892}
+  - component: {fileID: 8142210987892792723}
   m_Layer: 5
   m_Name: DescriptionText
   m_TagString: Untagged
@@ -306,3 +325,16 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: "\u5361\u724C\u63CF\u8FF0\u554A\u54C8\u54C8\u54C8\u54C8\u54C8\u54C8\u54C8\u54C8\u54C8\u54C8\u54C8"
+--- !u!114 &8142210987892792723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2743264984116767890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e87a29864f240647babe574d0b78c3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myCard: {fileID: 2743264982341635692}
