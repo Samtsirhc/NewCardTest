@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4961091401406027786, guid: 013d2848f4b5902438daa829eb9e006c, type: 3}
       propertyPath: m_Name
-      value: Blue_BingLen
+      value: Blue_BingLen Variant
       objectReference: {fileID: 0}
     - target: {fileID: 9047894583765516501, guid: 013d2848f4b5902438daa829eb9e006c, type: 3}
       propertyPath: m_Pivot.x
@@ -95,7 +95,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1214750768886353705, guid: 013d2848f4b5902438daa829eb9e006c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 013d2848f4b5902438daa829eb9e006c, type: 3}
 --- !u!1 &3855114640074123046 stripped
 GameObject:
@@ -117,6 +118,6 @@ MonoBehaviour:
   position: 0
   coldAlarm: 0
   description: 
-  cardName: "\u793A\u4F8B\u5361\u724C"
-  originalDescription: "\u793A\u4F8B\u5361\u724C\u7684\u63CF\u8FF0"
-  tureDescription: "\u54C8\u54C8\u54C8\u54C8\u54C8\u54C8\u54C8\u54C8"
+  cardName: "\u51B0\u51B7"
+  originalDescription: "\u51BB\u7ED3\u724C\u6D41\u4E2D\u6307\u5B9A\u76842\u5F20\u84DD\u8272\u724C\u4E00\u56DE\u5408\uFF1B"
+  tureDescription: "\u51BB\u7ED3\u724C\u6D41\u4E2D\u6307\u5B9A\u76842\u5F20\u84DD\u8272\u724C\u4E00\u56DE\u5408\uFF1B"

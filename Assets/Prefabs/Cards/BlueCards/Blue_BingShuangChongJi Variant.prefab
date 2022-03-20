@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4961091401406027786, guid: 013d2848f4b5902438daa829eb9e006c, type: 3}
       propertyPath: m_Name
-      value: Blue_BingShuangChongJi
+      value: Blue_BingShuangChongJi Variant
       objectReference: {fileID: 0}
     - target: {fileID: 9047894583765516501, guid: 013d2848f4b5902438daa829eb9e006c, type: 3}
       propertyPath: m_Pivot.x
@@ -117,6 +117,6 @@ MonoBehaviour:
   position: 0
   coldAlarm: 0
   description: 
-  cardName: "\u793A\u4F8B\u5361\u724C"
-  originalDescription: "\u793A\u4F8B\u5361\u724C\u7684\u63CF\u8FF0"
-  tureDescription: "\u54C8\u54C8\u54C8\u54C8\u54C8\u54C8\u54C8\u54C8"
+  cardName: "\u51B0\u971C\u51B2\u51FB"
+  originalDescription: "\u5BF9\u654C\u65B9\u9020\u6210\u51B7\u9759*1\u4F24\u5BB3\uFF0C\u5E76\u9020\u6210\u51B7\u9759/5\u5C42\u7684\u5BD2\u51B7\uFF1B\u6210\u957F\uFF1A\u9020\u6210\u4F24\u5BB3\u7CFB\u6570+0.2"
+  tureDescription: "\u5BF9\u654C\u65B9\u9020\u6210\u51B7\u9759*1\u4F24\u5BB3\uFF0C\u5E76\u9020\u6210\u51B7\u9759/5\u5C42\u7684\u5BD2\u51B7\uFF1B\u6210\u957F\uFF1A\u9020\u6210\u4F24\u5BB3\u7CFB\u6570+0.2"

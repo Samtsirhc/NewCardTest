@@ -7,6 +7,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1214750768886353705, guid: 013d2848f4b5902438daa829eb9e006c, type: 3}
+      propertyPath: tureDescription
+      value: "\u83B7\u5F971\u500D\u51B7\u9759\u62A4\u7532\uFF0C\u5BF9\u654C\u4EBA\u9020\u62101\u500D\u51B7\u9759\u4F24\u5BB3"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1214750768886353705, guid: 013d2848f4b5902438daa829eb9e006c, type: 3}
+      propertyPath: originalDescription
+      value: "\u83B7\u5F971\u500D\u51B7\u9759\u62A4\u7532\uFF0C\u5BF9\u654C\u4EBA\u9020\u62101\u500D\u51B7\u9759\u4F24\u5BB3"
+      objectReference: {fileID: 0}
     - target: {fileID: 3437896046485108175, guid: 013d2848f4b5902438daa829eb9e006c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
