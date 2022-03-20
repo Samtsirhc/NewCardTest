@@ -35,7 +35,7 @@ public class Player : Unit
         {
             if (value <= 3)
             {
-                _anger = 3;
+                _calm = 3;
             }
             else
             {

@@ -16,6 +16,7 @@ public class DeckManager : Singleton<DeckManager>
     {
         EventCenter.AddListener(E_EventType.DRAW_CARD, DrawCard);
         EventCenter.AddListener<int>(E_EventType.DELETE_CARD, DeleteCard);
+        EventCenter.AddListener<int, int>(E_EventType.SWITCH_CARD, SwitchCard);
         EventCenter.AddListener<MyCard>(E_EventType.CARD_USED, CardUsed);
         for (int i = 0; i < 10; i++)
         {
@@ -30,13 +31,13 @@ public class DeckManager : Singleton<DeckManager>
         EventCenter.RemoveListener(E_EventType.DRAW_CARD, DrawCard);
         EventCenter.RemoveListener<int>(E_EventType.DELETE_CARD, DeleteCard);
         EventCenter.RemoveListener<MyCard>(E_EventType.CARD_USED, CardUsed);
+        EventCenter.RemoveListener<int, int>(E_EventType.SWITCH_CARD, SwitchCard);
     }
     // Update is called once per frame
     void Update()
     {
         SwitchDescriptionType();
     }
-
     public void SetCardPosition()
     {
         for (int i = 0; i < myCardInFlow.Count; i++)
@@ -65,7 +66,19 @@ public class DeckManager : Singleton<DeckManager>
         //    myCardInFlow[i].transform.position = cardPoses[i].transform.position;
         //}
     }
-
+    public void SwitchCard(int _index1, int _index2)
+    {
+        if (myCardInFlow[_index1] == null || myCardInFlow[_index2] == null)
+        {
+            return;
+        }
+        GameObject _tmp = myCardInFlow[_index1];
+        myCardInFlow[_index1] = myCardInFlow[_index2];
+        myCardInFlow[_index2] = _tmp;
+        myCardInFlow[_index1].GetComponent<MyCard>().position = _index2;
+        myCardInFlow[_index2].GetComponent<MyCard>().position = _index1;
+        SetCardPosition();
+    }
     public void MoveForward()
     {
         for (int i = 0; i < myCardInFlow.Count; i++)
@@ -91,7 +104,6 @@ public class DeckManager : Singleton<DeckManager>
             }
         }
     }
-
     public void DrawCard()
     {
         if (myCardInFlow.Count >= cardPoses.Count)
@@ -104,7 +116,6 @@ public class DeckManager : Singleton<DeckManager>
         myCardInFlow.Add(_card);
         SetCardPosition();
     }
-
     public void DeleteCard(int index)
     {
         if (myCardInFlow.Count <= 0)
@@ -123,14 +134,12 @@ public class DeckManager : Singleton<DeckManager>
             descriptionType = !descriptionType;
         }
     }
-
     public void CardUsed(MyCard myCard)
     {
         myCardInFlow.Remove(myCard.gameObject);
         Destroy(myCard.gameObject);
         SetCardPosition();
     }
-
     public void PlayFirstCard()
     {
         for (int i = 0; i < 10; i++)

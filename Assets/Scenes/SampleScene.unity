@@ -1195,6 +1195,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7091982074015172120, guid: cd60b256bb623fe46aa1f46f33ca180c, type: 3}
+      propertyPath: myCardPfbs.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7091982074015172120, guid: cd60b256bb623fe46aa1f46f33ca180c, type: 3}
       propertyPath: cardPoses.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -1238,6 +1242,10 @@ PrefabInstance:
       propertyPath: myCardPfbs.Array.data[0]
       value: 
       objectReference: {fileID: 3591260988804695279, guid: 01d697e1322a62d44970629d286b92eb, type: 3}
+    - target: {fileID: 7091982074015172120, guid: cd60b256bb623fe46aa1f46f33ca180c, type: 3}
+      propertyPath: myCardPfbs.Array.data[1]
+      value: 
+      objectReference: {fileID: 2539011637609940768, guid: ebbb54f9c935ee14eb9e3e87c47f9eee, type: 3}
     - target: {fileID: 7091982074015172121, guid: cd60b256bb623fe46aa1f46f33ca180c, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

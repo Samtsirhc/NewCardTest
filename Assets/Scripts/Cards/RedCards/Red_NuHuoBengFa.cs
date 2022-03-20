@@ -14,9 +14,9 @@ public class Red_NuHuoBengFa : RedCard
         CastDamage(GetAnger()*2);
     }
 
-    public override void PreUse()
+    public override void AfterUse()
     {
-        base.PreUse();
+        base.AfterUse();
         if (IsEndCard())
         {
             if (GetAnger() >= 10)
