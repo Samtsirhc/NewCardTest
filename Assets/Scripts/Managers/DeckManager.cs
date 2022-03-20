@@ -135,9 +135,10 @@ public class DeckManager : Singleton<DeckManager>
     {
         for (int i = 0; i < 10; i++)
         {
-            if (myCardInFlow[0].GetComponent<MyCard>().freezed <= 0)
+            if (myCardInFlow[i].GetComponent<MyCard>().freezed <= 0)
             {
-                myCardInFlow[0].GetComponent<MyCard>().PlayCard();
+                myCardInFlow[i].GetComponent<MyCard>().PlayCard();
+                Debug.Log("´ò³öÁË " + i);
                 return;
             }
         }
