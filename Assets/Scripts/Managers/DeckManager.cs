@@ -116,6 +116,18 @@ public class DeckManager : Singleton<DeckManager>
         myCardInFlow.Add(_card);
         SetCardPosition();
     }
+
+    public void AddCard(GameObject card)
+    {
+        if (myCardInFlow.Count >= cardPoses.Count)
+        {
+            TipManager.ShowTip("≈∆≥È¬˙¡À£°£°£°");
+            return;
+        }
+        GameObject _card = Instantiate(card, GameObject.Find("Canvas").transform);
+        myCardInFlow.Add(_card);
+        SetCardPosition();
+    }
     public void DeleteCard(int index)
     {
         if (myCardInFlow.Count <= 0)
