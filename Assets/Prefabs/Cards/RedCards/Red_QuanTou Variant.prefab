@@ -85,11 +85,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2743264982341635695, guid: 56f143c2f9fea48499262a71de6904e8, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 1385
       objectReference: {fileID: 0}
     - target: {fileID: 2743264982341635695, guid: 56f143c2f9fea48499262a71de6904e8, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 140
       objectReference: {fileID: 0}
     - target: {fileID: 2743264982341635695, guid: 56f143c2f9fea48499262a71de6904e8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -123,9 +123,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a77db383e886113428fbecdb3352c784, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  position: 0
+  position: 2
+  coldAlarm: 0
   description: 
   cardName: "\u62F3\u5934"
   originalDescription: "\u9020\u6210\u4E00\u500D\u6124\u6012\u4F24\u5BB3"
   tureDescription: "\u9020\u6210\u4E00\u500D\u6124\u6012\u4F24\u5BB3"
-  redComboCount: 0

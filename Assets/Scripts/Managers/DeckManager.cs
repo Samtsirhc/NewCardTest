@@ -9,6 +9,7 @@ public class DeckManager : Singleton<DeckManager>
     public List<GameObject> myCardPfbs;
     public List<GameObject> cardPoses;
     public List<GameObject> myCardInFlow;
+    private int maxFlowLenth = 10;
 
     public bool descriptionType;
     // Start is called before the first frame update
@@ -18,12 +19,14 @@ public class DeckManager : Singleton<DeckManager>
         EventCenter.AddListener<int>(E_EventType.DELETE_CARD, DeleteCard);
         EventCenter.AddListener<int, int>(E_EventType.SWITCH_CARD, SwitchCard);
         EventCenter.AddListener<MyCard>(E_EventType.CARD_USED, CardUsed);
-        for (int i = 0; i < 10; i++)
+        myCardInFlow = new List<GameObject>();
+        for (int i = 0; i < maxFlowLenth; i++)
         {
             GameObject _card_pos = Instantiate(cardPosPfb, GameObject.Find("Canvas").transform);
             _card_pos.transform.position = new Vector3((-i + 4.5f) * 170f + 960, -400 + 540, 0f);
             cardPoses.Add(_card_pos);
             _card_pos.GetComponentInChildren<Text>().text = i.ToString();
+            myCardInFlow.Add(null);
         }
     }
     private void OnDestroy()
@@ -38,34 +41,39 @@ public class DeckManager : Singleton<DeckManager>
     {
         SwitchDescriptionType();
     }
+
+    #region 设置卡牌位置
     public void SetCardPosition()
     {
-        for (int i = 0; i < myCardInFlow.Count; i++)
+        AlignRight();
+        foreach (var item in myCardInFlow)
         {
-            myCardInFlow[i].transform.position = cardPoses[i].transform.position;
+            if (item == null)
+            {
+                continue;
+            }
+            item.transform.position = cardPoses[item.GetComponent<MyCard>().position].transform.position;
+        }
+    }
+
+    public void AlignRight()
+    {
+        myCardInFlow.Remove(null);
+        for (int i = myCardInFlow.Count; i < maxFlowLenth; i++)
+        {
+            myCardInFlow.Add(null);
+            
+        }
+        for (int i = 0; i < maxFlowLenth; i++)
+        {
+            if (myCardInFlow[i] == null)
+            {
+                continue;
+            }
             myCardInFlow[i].GetComponent<MyCard>().position = i;
         }
-        //MoveForward();
-        //List<GameObject> _flow = new List<GameObject>();
-        //foreach (var item in myCardInFlow)
-        //{
-        //    _flow.Add(item);
-        //}
-        //MoveForward();
-        //myCardInFlow = new List<GameObject>();
-        //for (int i = 0; i < _flow.Count; i++)
-        //{
-        //    for (int j = 0; j < _flow.Count; j++)
-        //    {
-        //        if (_flow[j].GetComponent<MyCard>().position == i)
-        //        {
-        //            myCardInFlow.Add(_flow[j]);
-        //            continue;
-        //        }
-        //    }
-        //    myCardInFlow[i].transform.position = cardPoses[i].transform.position;
-        //}
     }
+    #endregion
     public void SwitchCard(int _index1, int _index2)
     {
         if (myCardInFlow[_index1] == null || myCardInFlow[_index2] == null)
@@ -106,26 +114,44 @@ public class DeckManager : Singleton<DeckManager>
     }
     public void DrawCard()
     {
-        if (myCardInFlow.Count >= cardPoses.Count)
+        if (IsFlowFull())
         {
-            TipManager.ShowTip("牌抽满了！！！");
             return;
         }
         int _index = Random.Range(0, myCardPfbs.Count);
         GameObject _card = Instantiate(myCardPfbs[_index], GameObject.Find("Canvas").transform);
-        myCardInFlow.Add(_card);
-        SetCardPosition();
+        AddCard(_card);
+    }
+
+    public bool IsFlowFull()
+    {
+        foreach (var item in myCardInFlow)
+        {
+            if (item == null)
+            {
+                return false;
+            }
+        }
+        TipManager.ShowTip("牌流满了！！！");
+        return true;
     }
 
     public void AddCard(GameObject card)
     {
-        if (myCardInFlow.Count >= cardPoses.Count)
+        if (IsFlowFull())
         {
-            TipManager.ShowTip("牌抽满了！！！");
+            TipManager.ShowTip("牌流满了！！！");
             return;
         }
-        GameObject _card = Instantiate(card, GameObject.Find("Canvas").transform);
-        myCardInFlow.Add(_card);
+        for (int i = 0; i < maxFlowLenth; i++)
+        {
+            if (myCardInFlow[i] == null)
+            {
+                myCardInFlow[i] = card;
+                card.GetComponent<MyCard>().position = i;
+                break;
+            }
+        }
         SetCardPosition();
     }
     public void DeleteCard(int index)
@@ -136,7 +162,7 @@ public class DeckManager : Singleton<DeckManager>
             return;
         }
         Destroy(myCardInFlow[index]);
-        myCardInFlow.RemoveAt(index);
+        myCardInFlow[index] = null;
         SetCardPosition();
     }
     public void SwitchDescriptionType()
@@ -148,7 +174,7 @@ public class DeckManager : Singleton<DeckManager>
     }
     public void CardUsed(MyCard myCard)
     {
-        myCardInFlow.Remove(myCard.gameObject);
+        myCardInFlow[myCard.position] = null;
         Destroy(myCard.gameObject);
         SetCardPosition();
     }
@@ -159,7 +185,7 @@ public class DeckManager : Singleton<DeckManager>
             if (myCardInFlow[i].GetComponent<MyCard>().freezed <= 0)
             {
                 myCardInFlow[i].GetComponent<MyCard>().PlayCard();
-                Debug.Log("打出了 " + i);
+                //Debug.Log("打出了 " + i);
                 return;
             }
         }

@@ -2,10 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using System;
 
 public class MyCard : MonoBehaviour
 {
+    #region ¹«¿ªÊôÐÔ
+    [HideInInspector]
     public virtual CardType cardType { get { return CardType.BASIC; } }
+    [HideInInspector]
     public int position;
     public int freezed
     {
@@ -23,45 +28,101 @@ public class MyCard : MonoBehaviour
             }
         } 
     }
-    private int _freezed = 0;
+    [HideInInspector]
     public bool coldAlarm = false;
-
+    [HideInInspector]
+    public Dictionary<string, int> playInfo;
 
     [HideInInspector]
     public string description;
     public string cardName = "Ê¾Àý¿¨ÅÆ";
     public string originalDescription = "Ê¾Àý¿¨ÅÆµÄÃèÊö";
     public string tureDescription = "¹þ¹þ¹þ¹þ¹þ¹þ¹þ¹þ";
+
+    #endregion
+    private int _freezed = 0;
+    private EventTrigger eventTrigger;
     // Start is called before the first frame update
     protected virtual void Start()
     {
+        InitTriggers();
         SwitchDescriptionType();
         EventCenter.AddListener(E_EventType.END_TURN, OnTurnEnd);
+        playInfo = new Dictionary<string, int>();
+        playInfo.Add("ÉËº¦", 0);
+        playInfo.Add("»¤¼×", 0);
     }
-
     protected virtual void OnDestroy()
     {
         EventCenter.RemoveListener(E_EventType.END_TURN, OnTurnEnd);
     }
-
     private void FixedUpdate()
     {
         SwitchDescriptionType();
     }
-    public void OnCardClicked()
+
+    #region UIÊÂ¼þ
+    private void InitTriggers()
+    {
+        eventTrigger = GetComponent<EventTrigger>();
+        AddPointerEvent(eventTrigger, EventTriggerType.PointerEnter, PointerEnter);
+        AddPointerEvent(eventTrigger, EventTriggerType.PointerExit, PointerExit);
+        AddPointerEvent(eventTrigger, EventTriggerType.PointerDown, PointerDown);
+        AddPointerEvent(eventTrigger, EventTriggerType.PointerUp, PointerUp);
+        AddPointerEvent(eventTrigger, EventTriggerType.PointerClick, PointerClick);
+
+    }
+
+    private void PointerClick(BaseEventData arg0)
     {
         if (Input.GetKey(KeyCode.A))
         {
             PlayCard();
         }
-        if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.D))
         {
             EventCenter.Broadcast(E_EventType.DELETE_CARD, position);
         }
-        if (Input.GetKey(KeyCode.F))
+        else if (Input.GetKey(KeyCode.F))
         {
             freezed += 1;
         }
+    }
+
+    private void PointerUp(BaseEventData arg0)
+    {
+        MyCard _other;
+        if (UIManager.Instance.ObjBePointed.TryGetComponent(out _other))
+        {
+            DeckManager.Instance.SwitchCard(_other.position, position);
+        }
+    }
+
+    private void PointerDown(BaseEventData arg0)
+    {
+        if (Input.GetKey(KeyCode.Q))
+        {
+            EventCenter.Broadcast(E_EventType.SHOW_ARROW);
+        }
+    }
+
+    private void PointerExit(BaseEventData arg0)
+    {
+        UIManager.Instance.ObjBePointed = null;
+    }
+
+    private void PointerEnter(BaseEventData arg0)
+    {
+        UIManager.Instance.ObjBePointed = gameObject;
+    }
+
+    private void AddPointerEvent(EventTrigger eventTrigger, EventTriggerType eventTriggerType, UnityEngine.Events.UnityAction<BaseEventData> callback)
+    {
+        EventTrigger.Entry entry = new EventTrigger.Entry();
+        entry.eventID = eventTriggerType;
+        entry.callback = new EventTrigger.TriggerEvent();
+        entry.callback.AddListener(callback);
+        eventTrigger.triggers.Add(entry);
     }
     public void SwitchDescriptionType()
     {
@@ -74,7 +135,9 @@ public class MyCard : MonoBehaviour
             description = tureDescription;
         }
     }
+    #endregion
 
+    #region Õ½¶·
     public virtual int CastDamage(int damage)
     {
         int _damage = BattleManager.Instance.enemy.TakeDamage(damage);
@@ -92,11 +155,11 @@ public class MyCard : MonoBehaviour
     {
 
     }
-
     public virtual void AddCold(int cold)
     {
         BattleManager.Instance.enemy.cold += cold;
     }
+    #endregion
 
     #region Á÷³ÌÏà¹Ø
 
@@ -127,7 +190,14 @@ public class MyCard : MonoBehaviour
     }
     public virtual void AfterUse()
     {
+        ShowCardPlayInfo();
         EventCenter.Broadcast<MyCard>(E_EventType.CARD_USED, this);
+    }
+
+    public virtual void ShowCardPlayInfo()
+    {
+        string _tmp = string.Format("¡¾{0}¡¿-¡¾{1}¡¿ÉËº¦£¬¡¾{2}¡¿»¤¼×", cardName, playInfo["ÉËº¦"], playInfo["»¤¼×"]);
+        TipManager.ShowTip(_tmp);
     }
 
     public virtual void OnTurnEnd()
@@ -190,4 +260,6 @@ public class MyCard : MonoBehaviour
         }
     }
     #endregion
+
+
 }

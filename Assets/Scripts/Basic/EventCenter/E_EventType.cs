@@ -22,6 +22,11 @@ public enum E_EventType
     // 回合相关
     END_TURN = 30000,
 
+    // UI相关
+    SHOW_ARROW = 40000,
+    UI_POINTER_ENTER = 40001,
+    UI_POINTER_OUT = 40002,
+
 
 
 }

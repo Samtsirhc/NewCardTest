@@ -10,10 +10,14 @@ PrefabInstance:
     - target: {fileID: 534252300, guid: 56f143c2f9fea48499262a71de6904e8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 7075225653464650967}
+    - target: {fileID: 534252300, guid: 56f143c2f9fea48499262a71de6904e8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnCardClicked
       objectReference: {fileID: 0}
     - target: {fileID: 2743264982341635692, guid: 56f143c2f9fea48499262a71de6904e8, type: 3}
       propertyPath: m_Name
-      value: Red_XiaMaWei
+      value: Red_XiaMaWei Variant
       objectReference: {fileID: 0}
     - target: {fileID: 2743264982341635695, guid: 56f143c2f9fea48499262a71de6904e8, type: 3}
       propertyPath: m_Pivot.x
@@ -120,8 +124,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   position: 0
+  coldAlarm: 0
   description: 
   cardName: "\u4E0B\u9A6C\u5A01"
   originalDescription: "\u793A\u4F8B\u5361\u724C\u7684\u63CF\u8FF0"
   tureDescription: "\u54C8\u54C8\u54C8\u54C8\u54C8\u54C8\u54C8\u54C8"
-  redComboCount: 0

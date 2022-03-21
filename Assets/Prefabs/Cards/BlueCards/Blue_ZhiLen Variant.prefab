@@ -7,6 +7,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1214750768886353705, guid: 013d2848f4b5902438daa829eb9e006c, type: 3}
+      propertyPath: cardName
+      value: "\u5236\u51B7"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1214750768886353705, guid: 013d2848f4b5902438daa829eb9e006c, type: 3}
+      propertyPath: tureDescription
+      value: "\u6B64\u724C\u5B58\u5728\u4E8E\u724C\u6D41\u4E2D\u4F1A\u51BB\u7ED3\u724C\u6D41\u6700\u5DE6\u4FA7\u7684\u84DD\u8272\u724C"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1214750768886353705, guid: 013d2848f4b5902438daa829eb9e006c, type: 3}
+      propertyPath: originalDescription
+      value: "\u6B64\u724C\u5B58\u5728\u4E8E\u724C\u6D41\u4E2D\u4F1A\u51BB\u7ED3\u724C\u6D41\u6700\u5DE6\u4FA7\u7684\u84DD\u8272\u724C"
+      objectReference: {fileID: 0}
     - target: {fileID: 4961091401406027786, guid: 013d2848f4b5902438daa829eb9e006c, type: 3}
       propertyPath: m_Name
       value: Blue_ZhiLen Variant

@@ -31,7 +31,7 @@ public class AddCard : MonoBehaviour
         {
             if (item.ToString() == dropdown.options[dropdown.value].text)
             {
-                DeckManager.Instance.AddCard(item);
+                DeckManager.Instance.AddCard(Instantiate(item, GameObject.Find("Canvas").transform));
             }
         }
     }

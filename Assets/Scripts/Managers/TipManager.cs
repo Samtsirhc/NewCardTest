@@ -6,6 +6,6 @@ public class TipManager : Singleton<TipManager>
 {
     public static void ShowTip(string tip)
     {
-
+        Debug.Log(tip);
     }
 }

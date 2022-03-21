@@ -7,9 +7,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1214750768886353705, guid: 013d2848f4b5902438daa829eb9e006c, type: 3}
+      propertyPath: cardName
+      value: "\u971C\u67F1"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1214750768886353705, guid: 013d2848f4b5902438daa829eb9e006c, type: 3}
+      propertyPath: tureDescription
+      value: "\u9020\u6210\u51B7\u9759*0.5\u7684\u4F24\u5BB3\uFF0C\u5E76\u83B7\u5F97\u9020\u6210\u4F24\u5BB3\u7684\u62A4\u7532\uFF1B\u6210\u957F\uFF1A\u7CFB\u6570+0.2\uFF1B\u51B0\u7720\uFF1A\u7CFB\u6570\u989D\u5916\u518D+0.2"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1214750768886353705, guid: 013d2848f4b5902438daa829eb9e006c, type: 3}
+      propertyPath: originalDescription
+      value: "\u9020\u6210\u51B7\u9759*0.5\u7684\u4F24\u5BB3\uFF0C\u5E76\u83B7\u5F97\u9020\u6210\u4F24\u5BB3\u7684\u62A4\u7532\uFF1B\u6210\u957F\uFF1A\u7CFB\u6570+0.2\uFF1B\u51B0\u7720\uFF1A\u7CFB\u6570\u989D\u5916\u518D+0.2"
+      objectReference: {fileID: 0}
     - target: {fileID: 4961091401406027786, guid: 013d2848f4b5902438daa829eb9e006c, type: 3}
       propertyPath: m_Name
-      value: Blue_ShuangZhu
+      value: Blue_ShuangZhu Variant
       objectReference: {fileID: 0}
     - target: {fileID: 9047894583765516501, guid: 013d2848f4b5902438daa829eb9e006c, type: 3}
       propertyPath: m_Pivot.x
