@@ -112,15 +112,37 @@ public class DeckManager : Singleton<DeckManager>
             }
         }
     }
+
+    public int curIndex = 0;
+    public List<int> indexes;
     public void DrawCard()
     {
         if (IsFlowFull())
         {
             return;
         }
-        int _index = Random.Range(0, myCardPfbs.Count);
-        GameObject _card = Instantiate(myCardPfbs[_index], GameObject.Find("Canvas").transform);
+        if (curIndex == 0)
+        {
+            indexes = new List<int>();
+            for (int i = 0; i < myCardPfbs.Count; i++)
+            {
+                indexes.Add(i);
+            }
+            for (int i = 0; i < myCardPfbs.Count; i++)
+            {
+                int _tmp = indexes[i];
+                int _tmp2 = Random.Range(0, myCardPfbs.Count);
+                indexes[i] = indexes[_tmp2];
+                indexes[_tmp2] = _tmp;
+            }
+        }
+        GameObject _card = Instantiate(myCardPfbs[indexes[curIndex]], GameObject.Find("Canvas").transform);
         AddCard(_card);
+        curIndex += 1;
+        if (curIndex >= myCardPfbs.Count)
+        {
+            curIndex = 0;
+        }  
     }
 
     public bool IsFlowFull()
@@ -149,6 +171,8 @@ public class DeckManager : Singleton<DeckManager>
             {
                 myCardInFlow[i] = card;
                 card.GetComponent<MyCard>().position = i;
+                string _s = string.Format("增加了卡牌【{0}】在位置【{1}】", card.GetComponent<MyCard>().cardName, i);
+                TipManager.ShowTip(_s);
                 break;
             }
         }

@@ -8,6 +8,9 @@ using System;
 public class MyCard : MonoBehaviour
 {
     #region 公开属性
+    public int cardLevel = 1;
+    public int maxLevel = 3;
+    public int additionalArmor;
     [HideInInspector]
     public virtual CardType cardType { get { return CardType.BASIC; } }
     [HideInInspector]
@@ -30,6 +33,12 @@ public class MyCard : MonoBehaviour
     }
     [HideInInspector]
     public bool coldAlarm = false;
+    [HideInInspector]
+    public bool burn = false;
+    [HideInInspector]
+    public int burnFactor = 2;
+    [HideInInspector]
+    public bool icebound = false;
     [HideInInspector]
     public Dictionary<string, int> playInfo;
 
@@ -79,6 +88,10 @@ public class MyCard : MonoBehaviour
         {
             PlayCard();
         }
+        if (Input.GetKey(KeyCode.W))
+        {
+            DeckManager.Instance.AddCard(Instantiate(gameObject, GameObject.Find("Canvas").transform));
+        }
         else if (Input.GetKey(KeyCode.D))
         {
             EventCenter.Broadcast(E_EventType.DELETE_CARD, position);
@@ -86,6 +99,43 @@ public class MyCard : MonoBehaviour
         else if (Input.GetKey(KeyCode.F))
         {
             freezed += 1;
+        }
+        else if (Input.GetKey(KeyCode.E))
+        {
+            if (cardLevel >= maxLevel)
+            {
+                cardLevel = 1;
+            }
+            else
+            {
+                cardLevel += 1;
+            }
+        }
+        else if (Input.GetKey(KeyCode.R))
+        {
+            if (!burn && !icebound)
+            {
+                burn = true;
+                string _s = string.Format("【{0}】燃烧了", cardName);
+                TipManager.ShowTip(_s);
+                return;
+            }
+            else if (burn && !icebound)
+            {
+                burn = false;
+                icebound = true;
+                string _s = string.Format("【{0}】冰封了", cardName);
+                TipManager.ShowTip(_s);
+                return;
+            }
+            else if (burn || icebound)
+            {
+                burn = false;
+                icebound = false;
+                string _s = string.Format("【{0}】恢复正常", cardName);
+                TipManager.ShowTip(_s);
+                return;
+            }
         }
     }
 
@@ -140,20 +190,29 @@ public class MyCard : MonoBehaviour
     #region 战斗
     public virtual int CastDamage(int damage)
     {
+        if (burn)
+        {
+            damage *= burnFactor;
+        }
         int _damage = BattleManager.Instance.enemy.TakeDamage(damage);
         if (_damage > 0)
         {
             OnCauseDamage();
+            if (icebound)
+            {
+                GetArmor(_damage);
+            }
         }
+        playInfo["伤害"] += _damage;
         return _damage;
     } 
     public virtual void GetArmor(int armor)
     {
         BattleManager.Instance.player.armor += armor;
+        playInfo["护甲"] += armor;
     }
     public virtual void OnCauseDamage()
     {
-
     }
     public virtual void AddCold(int cold)
     {
@@ -186,7 +245,7 @@ public class MyCard : MonoBehaviour
     }
     public virtual void OnUse()
     {
-
+        GetArmor(additionalArmor);
     }
     public virtual void AfterUse()
     {

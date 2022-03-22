@@ -5,21 +5,50 @@ using UnityEngine.UI;
 
 public class Unit : MonoBehaviour
 {
+    public GameObject ShouUnitStatus;
     virtual public int hp { get; set; }
     virtual public int armor { get; set; }
     virtual public int anger { get; set; }
     virtual public int calm { get; set; }
     virtual public int cold { get; set; }
+    virtual public int fire { get; set; }
+    virtual public int ice { get; set; }
 
-    public GameObject hpUI;
-    public GameObject armorUI;
-    public GameObject angerUI;
-    public GameObject calmUI;
-
-    // Start is called before the first frame update
+    private void UpdateUnitStatus()
+    {
+        string _s = "";
+        if (hp > 0)
+        {
+            _s += "…˙√¸ " + hp + "\n";
+        }
+        if (armor > 0)
+        {
+            _s += "ª§º◊ " + armor + "\n";
+        }
+        if (anger > 0)
+        {
+            _s += "∑ﬂ≈≠ " + anger + "\n";
+        }
+        if (calm > 0)
+        {
+            _s += "¿‰æ≤ " + calm + "\n";
+        }
+        if (cold > 0)
+        {
+            _s += "∫Æ¿‰ " + cold + "\n";
+        }
+        if (fire > 0)
+        {
+            _s += "ª—Ê " + fire + "\n";
+        }
+        if (ice > 0)
+        {
+            _s += "±˘À™ " + ice + "\n";
+        }
+        ShouUnitStatus.GetComponent<Text>().text = _s;
+    }
     protected virtual void Start()
     {
-        SetUIValue();
         EventCenter.AddListener(E_EventType.END_TURN, OnTurnEnd);
     }
 
@@ -35,51 +64,25 @@ public class Unit : MonoBehaviour
 
     private void FixedUpdate()
     {
+        UpdateUnitStatus();
     }
 
 
-    #region …Ë÷√ÕÊº“ Ù–‘
-    public void SetHp(int _var)
-    {
-        hp = _var;
-        SetUIValue();
-    }
-    public void SetArmor(int _var)
-    {
-        armor = _var;
-        SetUIValue();
-    }
-    public void SetAnger(int _var)
-    {
-        anger = _var;
-        SetUIValue();
-    }
-    public void SetCalm(int _var)
-    {
-        calm = _var;
-        SetUIValue();
-    }
-    public void SetUIValue()
-    {
-        hpUI.GetComponent<InputField>().text = hp.ToString();
-        armorUI.GetComponent<InputField>().text = armor.ToString();
-        angerUI.GetComponent<InputField>().text = anger.ToString();
-        calmUI.GetComponent<InputField>().text = calm.ToString();
-    }
-#endregion
+
+
     public int TakeDamage(int damage)
     {
         int _damage = 0;
         if (damage >= armor)
         {
             _damage = damage - armor;
+            armor = 0;
             hp -= _damage;
         }
         else
         {
             armor -= damage;
         }
-        SetUIValue();
         return _damage;
     }
 

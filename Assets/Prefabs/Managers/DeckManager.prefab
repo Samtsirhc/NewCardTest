@@ -49,8 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardPosPfb: {fileID: 0}
-  myCardPfbs:
-  - {fileID: 2743264982341635692, guid: 56f143c2f9fea48499262a71de6904e8, type: 3}
+  myCardPfbs: []
   cardPoses:
   - {fileID: 0}
   - {fileID: 0}
