@@ -4,24 +4,23 @@ using UnityEngine;
 
 public class FRed_PaoXiao : FireRedCard
 {
-    private int burnPoint;
-    private int burnPointStart;
+    public int fireStart;
     protected override void Start()
     {
         base.Start();
         switch (cardLevel)
         {
             case 1:
-                burnPoint = 3;
-                burnPointStart = 2;
+                fire = 5;
+                fireStart = 5;
                 break;
             case 2:
-                burnPoint = 4;
-                burnPointStart = 2;
+                fire = 7;
+                fireStart = 5;
                 break;
             case 3:
-                burnPoint = 5;
-                burnPointStart = 3;
+                fire = 8;
+                fireStart = 8;
                 break;
             default:
                 break;
@@ -30,27 +29,17 @@ public class FRed_PaoXiao : FireRedCard
     public override void OnUse()
     {
         base.OnUse();
-        switch (cardLevel)
-        {
-            case 1:
-                burnPoint = 3;
-                burnPointStart = 2;
-                break;
-            case 2:
-                burnPoint = 4;
-                burnPointStart = 2;
-                break;
-            case 3:
-                burnPoint = 5;
-                burnPointStart = 3;
-                break;
-            default:
-                break;
-        }
         if (IsStartCard())
         {
-            BattleManager.Instance.player.fire += burnPointStart;
+            BattleManager.Instance.player.fire += fireStart;
         }
-        BattleManager.Instance.player.fire += burnPoint;
+        BattleManager.Instance.player.fire += fire;
+    }
+    protected override void UpdateDes()
+    {
+        base.UpdateDes();
+        description = "";
+        description += "»ðÑæ" + fire + ";";
+        description += "³õÊ¼£º»ðÑæ+" + fireStart + ";";
     }
 }

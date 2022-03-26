@@ -4,50 +4,33 @@ using UnityEngine;
 
 public class IBlue_ZhiLenQi : IceBlueCard
 {
-    private int iceAdder;
-
-    public override void OnTurnEnd()
+    protected override void Start()
     {
-        base.OnTurnEnd();
+        base.Start();
         switch (cardLevel)
         {
             case 1:
-                iceAdder = 1;
+                armor = 2;
                 break;
             case 2:
-                iceAdder = 2;
+                armor = 3;
                 break;
             case 3:
-                iceAdder = 4;
+                armor = 4;
                 break;
             default:
                 break;
         }
-        if (position != 0 && position != 9)
-        {
-            if (DeckManager.Instance.myCardInFlow[position - 1] != null)
-            {
-                DeckManager.Instance.myCardInFlow[position - 1].GetComponent<MyCard>().additionalArmor += iceAdder;
-            }
-            if (DeckManager.Instance.myCardInFlow[position + 1] != null)
-            {
-                DeckManager.Instance.myCardInFlow[position + 1].GetComponent<MyCard>().additionalArmor += iceAdder;
-            }
-        }
-        if (position == 0)
-        {
-            if (DeckManager.Instance.myCardInFlow[position + 1] != null)
-            {
-                DeckManager.Instance.myCardInFlow[position + 1].GetComponent<MyCard>().additionalArmor += iceAdder;
-            }
-        }
-        if (position == 9)
-        {
-            if (DeckManager.Instance.myCardInFlow[position - 1] != null)
-            {
-                DeckManager.Instance.myCardInFlow[position - 1].GetComponent<MyCard>().additionalArmor += iceAdder;
-            }
-        }
     }
-
+    public override void OnTurnEnd()
+    {
+        base.OnTurnEnd();
+        GetArmor(armor);
+    }
+    protected override void UpdateDes()
+    {
+        base.UpdateDes();
+        description = "";
+        description += "±£Áô£º»¤¼×" + armor + ";";
+    }
 }

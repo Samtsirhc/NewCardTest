@@ -14,7 +14,7 @@ public class AddCard : MonoBehaviour
         List<Dropdown.OptionData> listOptions = new List<Dropdown.OptionData>();
         foreach (var item in gameObjects)
         {
-            listOptions.Add(new Dropdown.OptionData(item.ToString()));
+            listOptions.Add(new Dropdown.OptionData(item.GetComponent<MyCard>().cardName));
         }
         dropdown.AddOptions(listOptions);
     }

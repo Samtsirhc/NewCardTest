@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class FRed_QuanTou : FireRedCard
 {
-    private int damage;
     protected override void Start()
     {
         base.Start();
@@ -12,12 +11,15 @@ public class FRed_QuanTou : FireRedCard
         {
             case 1:
                 damage = 5;
+                fire = 1;
                 break;
             case 2:
                 damage = 7;
+                fire = 1;
                 break;
             case 3:
                 damage = 12;
+                fire = 2;
                 break;
             default:
                 break;
@@ -26,20 +28,15 @@ public class FRed_QuanTou : FireRedCard
     public override void OnUse()
     {
         base.OnUse();
-        switch (cardLevel)
-        {
-            case 1:
-                damage = 5;
-                break;
-            case 2:
-                damage = 7;
-                break;
-            case 3:
-                damage = 12;
-                break;
-            default:
-                break;
-        }
         CastDamage(damage);
+        BattleManager.Instance.player.fire += 1;
+    }
+
+    protected override void UpdateDes()
+    {
+        base.UpdateDes();
+        description = "";
+        description += "ÉËº¦" + damage + ";";
+        description += "»ðÑæ" + fire + ";";
     }
 }

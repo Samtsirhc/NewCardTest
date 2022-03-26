@@ -4,28 +4,24 @@ using UnityEngine;
 
 public class IBlue_BingSun : IceBlueCard
 {
-    private int armor;
-    private int ice;
     private int growIce;
 
     protected override void Start()
     {
         base.Start();
-        growIce = 1;
         switch (cardLevel)
         {
             case 1:
                 armor = 5;
-                ice = 0;
+                growIce = 2;
                 break;
             case 2:
                 armor = 7;
-                ice = 1;
+                growIce = 3;
                 break;
             case 3:
                 armor = 9;
-                ice = 1;
-                growIce = 2;
+                growIce = 4;
                 break;
             default:
                 break;
@@ -34,12 +30,19 @@ public class IBlue_BingSun : IceBlueCard
     public override void OnTurnEnd()
     {
         base.OnTurnEnd();
-        ice += growIce;
+        BattleManager.Instance.player.ice += growIce;
     }
     public override void OnUse()
     {
         base.OnUse();
         GetArmor(armor);
-        BattleManager.Instance.player.ice += ice;
+    }
+
+    protected override void UpdateDes()
+    {
+        base.UpdateDes();
+        description = "";
+        description += "»¤¼×" + armor + ";";
+        description += "±£Áô£ºº®±ù" + growIce + "; ";
     }
 }

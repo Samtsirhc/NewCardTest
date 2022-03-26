@@ -7,14 +7,26 @@ using System;
 
 public class MyCard : MonoBehaviour
 {
-    #region ¹«¿ªÊôÐÔ
+    #region »ù´¡ÊôÐÔ
     public int cardLevel = 1;
     public int maxLevel = 3;
-    public int additionalArmor;
     [HideInInspector]
     public virtual CardType cardType { get { return CardType.BASIC; } }
     [HideInInspector]
     public int position;
+    [HideInInspector]
+    public Dictionary<string, int> playInfo;
+    [HideInInspector]
+    public string description;
+    public string cardName = "Ê¾Àý¿¨ÅÆ";
+    public string originalDescription = "Ê¾Àý¿¨ÅÆµÄÃèÊö";
+    public string tureDescription = "¹þ¹þ¹þ¹þ¹þ¹þ¹þ¹þ";
+    #endregion
+
+    #region ¿¨ÅÆÊôÐÔ
+    public int damage;
+    public int armor;
+    public int additionalArmor = 0;
     public int freezed
     {
         get { return _freezed; }
@@ -29,28 +41,20 @@ public class MyCard : MonoBehaviour
                     PlayCard();
                 }
             }
-        } 
+        }
     }
-    [HideInInspector]
     public bool coldAlarm = false;
-    [HideInInspector]
     public bool burn = false;
-    [HideInInspector]
     public int burnFactor = 2;
-    [HideInInspector]
+    public int fire;
+    public int cold;
     public bool icebound = false;
-    [HideInInspector]
-    public Dictionary<string, int> playInfo;
-
-    [HideInInspector]
-    public string description;
-    public string cardName = "Ê¾Àý¿¨ÅÆ";
-    public string originalDescription = "Ê¾Àý¿¨ÅÆµÄÃèÊö";
-    public string tureDescription = "¹þ¹þ¹þ¹þ¹þ¹þ¹þ¹þ";
-
     #endregion
+
     private int _freezed = 0;
     private EventTrigger eventTrigger;
+
+    #region Unityº¯Êý
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -65,12 +69,19 @@ public class MyCard : MonoBehaviour
     {
         EventCenter.RemoveListener(E_EventType.END_TURN, OnTurnEnd);
     }
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         SwitchDescriptionType();
+        UpdateDes();
     }
+    #endregion
 
     #region UIÊÂ¼þ
+    protected virtual void UpdateDes()
+    {
+
+    }
+
     private void InitTriggers()
     {
         eventTrigger = GetComponent<EventTrigger>();
@@ -317,6 +328,19 @@ public class MyCard : MonoBehaviour
         {
             return 0;
         }
+    }
+
+    public bool IsNextCardCombo()
+    {
+        MyCard _card;
+        if (DeckManager.Instance.myCardInFlow[position].TryGetComponent<MyCard>(out _card))
+        {
+            if (_card.cardType == cardType)
+            {
+                return true;
+            }
+        }
+        return false;
     }
     #endregion
 

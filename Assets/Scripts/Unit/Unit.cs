@@ -90,7 +90,7 @@ public class Unit : MonoBehaviour
 
     public virtual void OnTurnEnd()
     {
-
+        armor = 0;
     }
 
     public virtual void OnTurnStart()

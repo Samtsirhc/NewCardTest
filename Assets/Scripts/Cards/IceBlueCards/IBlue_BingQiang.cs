@@ -4,24 +4,37 @@ using UnityEngine;
 
 public class IBlue_BingQiang : IceBlueCard
 {
-    private int armor;
-    public override void OnUse()
+    protected override void Start()
     {
-        base.OnUse();
+        base.Start();
         switch (cardLevel)
         {
             case 1:
                 armor = 5;
+                cold = 2;
                 break;
             case 2:
                 armor = 7;
+                cold = 2;
                 break;
             case 3:
                 armor = 13;
+                cold = 2;
                 break;
             default:
                 break;
         }
+    }
+    public override void OnUse()
+    {
+        base.OnUse();
         GetArmor(armor);
+    }
+    protected override void UpdateDes()
+    {
+        base.UpdateDes();
+        description = "";
+        description += "»¤¼×" + armor + ";";
+        description += "º®±ù" + cold + "; ";
     }
 }
