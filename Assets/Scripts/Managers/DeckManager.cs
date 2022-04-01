@@ -9,12 +9,14 @@ public class DeckManager : Singleton<DeckManager>
     public List<GameObject> myCardPfbs;
     public List<GameObject> cardPoses;
     public List<GameObject> myCardInFlow;
-    private int maxFlowLenth = 10;
+    private List<GameObject> cardBuffer;
+    private int maxFlowLenth = 5;
 
     public bool descriptionType;
     // Start is called before the first frame update
     void Start()
     {
+        cardBuffer = new List<GameObject>();
         EventCenter.AddListener(E_EventType.DRAW_CARD, DrawCard);
         EventCenter.AddListener<int>(E_EventType.DELETE_CARD, DeleteCard);
         EventCenter.AddListener<int, int>(E_EventType.SWITCH_CARD, SwitchCard);
@@ -121,22 +123,9 @@ public class DeckManager : Singleton<DeckManager>
         {
             return;
         }
-        if (curIndex == 0)
-        {
-            indexes = new List<int>();
-            for (int i = 0; i < myCardPfbs.Count; i++)
-            {
-                indexes.Add(i);
-            }
-            for (int i = 0; i < myCardPfbs.Count; i++)
-            {
-                int _tmp = indexes[i];
-                int _tmp2 = Random.Range(0, myCardPfbs.Count);
-                indexes[i] = indexes[_tmp2];
-                indexes[_tmp2] = _tmp;
-            }
-        }
-        GameObject _card = Instantiate(myCardPfbs[indexes[curIndex]], GameObject.Find("Canvas").transform);
+        CheckBuffer();
+        GameObject _card = cardBuffer[0];
+        cardBuffer.RemoveAt(0);
         AddCard(_card);
         curIndex += 1;
         if (curIndex >= myCardPfbs.Count)
@@ -144,7 +133,6 @@ public class DeckManager : Singleton<DeckManager>
             curIndex = 0;
         }  
     }
-
     public bool IsFlowFull()
     {
         foreach (var item in myCardInFlow)
@@ -157,7 +145,6 @@ public class DeckManager : Singleton<DeckManager>
         TipManager.ShowTip("牌流满了！！！");
         return true;
     }
-
     public void AddCard(GameObject card)
     {
         if (IsFlowFull())
@@ -173,10 +160,43 @@ public class DeckManager : Singleton<DeckManager>
                 card.GetComponent<MyCard>().position = i;
                 string _s = string.Format("增加了卡牌【{0}】在位置【{1}】", card.GetComponent<MyCard>().cardName, i);
                 TipManager.ShowTip(_s);
+                card.GetComponent<MyCard>().OnGet();
                 break;
             }
         }
         SetCardPosition();
+    }
+    public void CheckBuffer()
+    {
+        if (cardBuffer.Count > 0)
+        {
+            return;
+        }
+        else
+        {
+            ResetCardBuffer();
+        }
+    }
+    public void ResetCardBuffer()
+    {
+        cardBuffer = new List<GameObject>();
+        for (int i = 0; i < myCardPfbs.Count; i++)
+        {
+            if (i == 0)
+            {
+                cardBuffer.Add(CreateNewCardClone(myCardPfbs[i]));
+            }
+            else
+            {
+                cardBuffer.Insert(Random.Range(0, i), CreateNewCardClone(myCardPfbs[i]));
+            }
+        }
+    }
+    public GameObject CreateNewCardClone(GameObject obj)
+    {
+        GameObject _obj = Instantiate(obj, GameObject.Find("Canvas").transform);
+        _obj.transform.position = new Vector3(-2000, -2000, 0);
+        return _obj;
     }
     public void DeleteCard(int index)
     {
@@ -204,7 +224,7 @@ public class DeckManager : Singleton<DeckManager>
     }
     public void PlayFirstCard()
     {
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < maxFlowLenth; i++)
         {
             if (myCardInFlow[i].GetComponent<MyCard>().freezed <= 0)
             {

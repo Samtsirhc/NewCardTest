@@ -2140,7 +2140,7 @@ MonoBehaviour:
   comboColor: 0
   comboCount: 0
   playCardTime: 0
-  maxPlayerCardTime: 4
+  maxPlayerCardTime: 5
 --- !u!114 &1066303383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4642,31 +4642,35 @@ PrefabInstance:
     - target: {fileID: 7091982074015172120, guid: cd60b256bb623fe46aa1f46f33ca180c, type: 3}
       propertyPath: myCardPfbs.Array.data[0]
       value: 
-      objectReference: {fileID: 5495508364816016612, guid: 12567a0e4b2d9564ba1d2241c297cda3, type: 3}
+      objectReference: {fileID: 283143116982185948, guid: 8d8526780e2f45647953d6ba2273a545, type: 3}
     - target: {fileID: 7091982074015172120, guid: cd60b256bb623fe46aa1f46f33ca180c, type: 3}
       propertyPath: myCardPfbs.Array.data[1]
       value: 
-      objectReference: {fileID: 3758584912746520289, guid: 8124a53475ba8cb43bdad6adf1340124, type: 3}
+      objectReference: {fileID: 6491308080494473262, guid: 35e93c657caa89d4ead776c78a46436b, type: 3}
     - target: {fileID: 7091982074015172120, guid: cd60b256bb623fe46aa1f46f33ca180c, type: 3}
       propertyPath: myCardPfbs.Array.data[2]
       value: 
-      objectReference: {fileID: 3915514627132805227, guid: 1f704e876318c8547a9f068385028446, type: 3}
+      objectReference: {fileID: 5495508364816016612, guid: 12567a0e4b2d9564ba1d2241c297cda3, type: 3}
     - target: {fileID: 7091982074015172120, guid: cd60b256bb623fe46aa1f46f33ca180c, type: 3}
       propertyPath: myCardPfbs.Array.data[3]
       value: 
-      objectReference: {fileID: 283143116982185948, guid: f9e6dd32380a5ea4e944fb0065b25f31, type: 3}
+      objectReference: {fileID: 3758584912746520289, guid: 8124a53475ba8cb43bdad6adf1340124, type: 3}
     - target: {fileID: 7091982074015172120, guid: cd60b256bb623fe46aa1f46f33ca180c, type: 3}
       propertyPath: myCardPfbs.Array.data[4]
       value: 
-      objectReference: {fileID: 69851196639678131, guid: a65eb23ade4c1794db6c10686036aee6, type: 3}
+      objectReference: {fileID: 2758640872035177789, guid: 1f8ec7d4a420d5a4f810047d468449e9, type: 3}
     - target: {fileID: 7091982074015172120, guid: cd60b256bb623fe46aa1f46f33ca180c, type: 3}
       propertyPath: myCardPfbs.Array.data[5]
       value: 
-      objectReference: {fileID: 6491308080494473262, guid: 109891a2aec7c914d99ee4dad00963b8, type: 3}
+      objectReference: {fileID: 69851196639678131, guid: 4f4ff6aab6a06b840b707852790fa3b8, type: 3}
     - target: {fileID: 7091982074015172120, guid: cd60b256bb623fe46aa1f46f33ca180c, type: 3}
       propertyPath: myCardPfbs.Array.data[6]
       value: 
-      objectReference: {fileID: 2758640872035177789, guid: eec8c6b84ed5eee459cf28a1580de757, type: 3}
+      objectReference: {fileID: 3915514627132805227, guid: cd598eebbacc3bc4b8466aa2f84bb85b, type: 3}
+    - target: {fileID: 7091982074015172120, guid: cd60b256bb623fe46aa1f46f33ca180c, type: 3}
+      propertyPath: myCardPfbs.Array.data[7]
+      value: 
+      objectReference: {fileID: 2872523713266483485, guid: cf416ae13fd6bff41a4372e305bf4608, type: 3}
     - target: {fileID: 7091982074015172121, guid: cd60b256bb623fe46aa1f46f33ca180c, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

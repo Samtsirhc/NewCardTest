@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class IBlue_BingSun : IceBlueCard
 {
-    private int growIce;
 
     protected override void Start()
     {
@@ -13,36 +12,35 @@ public class IBlue_BingSun : IceBlueCard
         {
             case 1:
                 armor = 5;
-                growIce = 2;
+                cold = 4;
                 break;
             case 2:
                 armor = 7;
-                growIce = 3;
+                cold = 5;
                 break;
             case 3:
                 armor = 9;
-                growIce = 4;
+                cold = 7;
                 break;
             default:
                 break;
         }
-    }
-    public override void OnTurnEnd()
-    {
-        base.OnTurnEnd();
-        BattleManager.Instance.player.ice += growIce;
     }
     public override void OnUse()
     {
         base.OnUse();
         GetArmor(armor);
     }
-
+    public override void OnGet()
+    {
+        base.OnGet();
+        BattleManager.Instance.player.ice += cold;
+    }
     protected override void UpdateDes()
     {
         base.UpdateDes();
         description = "";
         description += "护甲" + armor + ";";
-        description += "保留：寒冰" + growIce + "; ";
+        description += "获得：寒冰" + cold + "; ";
     }
 }

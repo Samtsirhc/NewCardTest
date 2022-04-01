@@ -56,7 +56,7 @@ public class MyCard : MonoBehaviour
 
     #region Unityº¯Êý
     // Start is called before the first frame update
-    protected virtual void Start()
+    protected virtual void Awake()
     {
         InitTriggers();
         SwitchDescriptionType();
@@ -64,6 +64,10 @@ public class MyCard : MonoBehaviour
         playInfo = new Dictionary<string, int>();
         playInfo.Add("ÉËº¦", 0);
         playInfo.Add("»¤¼×", 0);
+    }
+    protected virtual void Start()
+    {
+
     }
     protected virtual void OnDestroy()
     {
@@ -248,6 +252,13 @@ public class MyCard : MonoBehaviour
         PreUse();
         OnUse();
         AfterUse();
+        EventCenter.Broadcast<MyCard>(E_EventType.CARD_USED, this);
+    }
+    public virtual void TriggerCard()
+    {
+        PreUse();
+        OnUse();
+        AfterUse();
     }
 
     public virtual void PreUse()
@@ -256,14 +267,16 @@ public class MyCard : MonoBehaviour
     }
     public virtual void OnUse()
     {
-        GetArmor(additionalArmor);
+        //GetArmor(additionalArmor);
     }
     public virtual void AfterUse()
     {
         ShowCardPlayInfo();
-        EventCenter.Broadcast<MyCard>(E_EventType.CARD_USED, this);
     }
-
+    public virtual void OnGet()
+    {
+        
+    }
     public virtual void ShowCardPlayInfo()
     {
         string _tmp = string.Format("¡¾{0}¡¿-¡¾{1}¡¿ÉËº¦£¬¡¾{2}¡¿»¤¼×", cardName, playInfo["ÉËº¦"], playInfo["»¤¼×"]);
@@ -330,6 +343,27 @@ public class MyCard : MonoBehaviour
         }
     }
 
+    public MyCard GetCardByPos(int index)
+    {
+        if (IsIndexLegal(index))
+        {
+            return DeckManager.Instance.myCardInFlow[index].GetComponent<MyCard>();
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public bool IsIndexLegal(int index)
+    {
+        int _flow_length = DeckManager.Instance.myCardInFlow.Count;
+        if (index >= 0 && index < _flow_length)
+        {
+            return true;
+        }
+        return false;
+    }
     public bool IsNextCardCombo()
     {
         MyCard _card;

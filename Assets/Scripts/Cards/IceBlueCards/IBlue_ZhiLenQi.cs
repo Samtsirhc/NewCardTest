@@ -10,27 +10,29 @@ public class IBlue_ZhiLenQi : IceBlueCard
         switch (cardLevel)
         {
             case 1:
-                armor = 2;
+                armor = 4;
                 break;
             case 2:
-                armor = 3;
+                armor = 6;
                 break;
             case 3:
-                armor = 4;
+                armor = 8;
                 break;
             default:
                 break;
         }
     }
-    public override void OnTurnEnd()
+
+    public override void OnGet()
     {
-        base.OnTurnEnd();
+        base.OnGet();
         GetArmor(armor);
     }
     protected override void UpdateDes()
     {
         base.UpdateDes();
         description = "";
-        description += "保留：护甲" + armor + ";";
+        description += "获得：获得" + armor + "护甲";
+
     }
 }

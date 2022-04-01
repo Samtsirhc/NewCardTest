@@ -29,6 +29,7 @@ public class IBlue_BingQiang : IceBlueCard
     {
         base.OnUse();
         GetArmor(armor);
+        BattleManager.Instance.player.ice += cold;
     }
     protected override void UpdateDes()
     {
