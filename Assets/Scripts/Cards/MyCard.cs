@@ -15,7 +15,7 @@ public class MyCard : MonoBehaviour
     [HideInInspector]
     public int position;
     [HideInInspector]
-    public Dictionary<string, int> playInfo;
+    public Dictionary<string, int> playInfo;    // 记录一些伤害之类的东西
     [HideInInspector]
     public string description;
     public string cardName = "示例卡牌";
@@ -26,33 +26,22 @@ public class MyCard : MonoBehaviour
     #region 卡牌属性
     public int damage;
     public int armor;
-    public int additionalArmor = 0;
-    public int freezed
-    {
-        get { return _freezed; }
-        set
-        {
-            _freezed = value;
-            if (_freezed >= 1)
-            {
-                OnFreezed();
-                if (coldAlarm)
-                {
-                    PlayCard();
-                }
-            }
-        }
-    }
-    public bool coldAlarm = false;
+
+    // 火焰
+    public int fire;
     public bool burn = false;
     public int burnFactor = 2;
-    public int fire;
-    public int cold;
+
+    // 寒冰
+    public int ice;
     public bool icebound = false;
+    public int iceboundFactor = 1;
+
     #endregion
 
-    private int _freezed = 0;
+    #region 其他
     private EventTrigger eventTrigger;
+    #endregion
 
     #region Unity函数
     // Start is called before the first frame update
@@ -111,10 +100,6 @@ public class MyCard : MonoBehaviour
         {
             EventCenter.Broadcast(E_EventType.DELETE_CARD, position);
         }
-        else if (Input.GetKey(KeyCode.F))
-        {
-            freezed += 1;
-        }
         else if (Input.GetKey(KeyCode.E))
         {
             if (cardLevel >= maxLevel)
@@ -162,7 +147,6 @@ public class MyCard : MonoBehaviour
             DeckManager.Instance.SwitchCard(_other.position, position);
         }
     }
-
     private void PointerDown(BaseEventData arg0)
     {
         if (Input.GetKey(KeyCode.Q))
@@ -170,17 +154,14 @@ public class MyCard : MonoBehaviour
             EventCenter.Broadcast(E_EventType.SHOW_ARROW);
         }
     }
-
     private void PointerExit(BaseEventData arg0)
     {
         UIManager.Instance.ObjBePointed = null;
     }
-
     private void PointerEnter(BaseEventData arg0)
     {
         UIManager.Instance.ObjBePointed = gameObject;
     }
-
     private void AddPointerEvent(EventTrigger eventTrigger, EventTriggerType eventTriggerType, UnityEngine.Events.UnityAction<BaseEventData> callback)
     {
         EventTrigger.Entry entry = new EventTrigger.Entry();
@@ -244,11 +225,6 @@ public class MyCard : MonoBehaviour
 
     public virtual void PlayCard()
     {
-        if (freezed >= 1 && !coldAlarm)
-        {
-            TipManager.ShowTip("这张牌被冻结了！");
-            return;
-        }
         PreUse();
         OnUse();
         AfterUse();
@@ -285,10 +261,6 @@ public class MyCard : MonoBehaviour
 
     public virtual void OnTurnEnd()
     {
-        if (freezed >= 1)
-        {
-            freezed -= 1;
-        }
     }
 
     public virtual void OnTurnStart()
@@ -299,30 +271,6 @@ public class MyCard : MonoBehaviour
     #endregion
 
     #region 获取数据
-    public int GetAnger()
-    {
-        return BattleManager.Instance.player.anger;
-    }
-    public void SetAnger(int var)
-    {
-        BattleManager.Instance.player.anger = var;
-    }
-    public void AddAnger(int var)
-    {
-        BattleManager.Instance.player.anger += var;
-    }
-    public int GetCalm()
-    {
-        return BattleManager.Instance.player.calm;
-    }
-    public void SetCalm(int var)
-    {
-        BattleManager.Instance.player.calm = var;
-    }
-    public void AddCalm(int var)
-    {
-        BattleManager.Instance.player.calm += var;
-    }
     public bool IsStartCard()
     {
         return BattleManager.Instance.maxPlayerCardTime - 1 == BattleManager.Instance.playCardTime;
@@ -342,7 +290,6 @@ public class MyCard : MonoBehaviour
             return 0;
         }
     }
-
     public MyCard GetCardByPos(int index)
     {
         if (IsIndexLegal(index))
@@ -354,7 +301,6 @@ public class MyCard : MonoBehaviour
             return null;
         }
     }
-
     public bool IsIndexLegal(int index)
     {
         int _flow_length = DeckManager.Instance.myCardInFlow.Count;
@@ -364,7 +310,7 @@ public class MyCard : MonoBehaviour
         }
         return false;
     }
-    public bool IsNextCardCombo()
+    public bool IsNextCardCombo()   // 自己后面的牌是不是一个颜色的
     {
         MyCard _card;
         if (DeckManager.Instance.myCardInFlow[position].TryGetComponent<MyCard>(out _card))

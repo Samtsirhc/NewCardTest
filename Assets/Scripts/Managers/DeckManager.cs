@@ -89,31 +89,6 @@ public class DeckManager : Singleton<DeckManager>
         myCardInFlow[_index2].GetComponent<MyCard>().position = _index1;
         SetCardPosition();
     }
-    public void MoveForward()
-    {
-        for (int i = 0; i < myCardInFlow.Count; i++)
-        {
-            if (myCardInFlow[i].GetComponent<MyCard>().freezed >= 1)
-            {
-                for (int j = i + 1; j < myCardInFlow.Count; j++)
-                {
-                    if (myCardInFlow[j].GetComponent<MyCard>().position == 0)
-                    {
-                        continue;
-                    }
-                    if (myCardInFlow[j].GetComponent<MyCard>().freezed <= 0)
-                    {
-                        myCardInFlow[j].GetComponent<MyCard>().position -= 1;
-                        continue;
-                    }
-                }
-            }
-            else
-            {
-                myCardInFlow[i].GetComponent<MyCard>().position -= 1;
-            }
-        }
-    }
 
     public int curIndex = 0;
     public List<int> indexes;
@@ -224,15 +199,7 @@ public class DeckManager : Singleton<DeckManager>
     }
     public void PlayFirstCard()
     {
-        for (int i = 0; i < maxFlowLenth; i++)
-        {
-            if (myCardInFlow[i].GetComponent<MyCard>().freezed <= 0)
-            {
-                myCardInFlow[i].GetComponent<MyCard>().PlayCard();
-                //Debug.Log("´ò³öÁË " + i);
-                return;
-            }
-        }
+        myCardInFlow[0].GetComponent<MyCard>().PlayCard();
     }
 
 }

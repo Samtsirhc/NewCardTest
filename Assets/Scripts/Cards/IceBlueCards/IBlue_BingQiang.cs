@@ -11,15 +11,15 @@ public class IBlue_BingQiang : IceBlueCard
         {
             case 1:
                 armor = 5;
-                cold = 2;
+                ice = 2;
                 break;
             case 2:
                 armor = 7;
-                cold = 2;
+                ice = 2;
                 break;
             case 3:
                 armor = 13;
-                cold = 2;
+                ice = 2;
                 break;
             default:
                 break;
@@ -29,13 +29,13 @@ public class IBlue_BingQiang : IceBlueCard
     {
         base.OnUse();
         GetArmor(armor);
-        BattleManager.Instance.player.ice += cold;
+        BattleManager.Instance.player.ice += ice;
     }
     protected override void UpdateDes()
     {
         base.UpdateDes();
         description = "";
         description += "»¤¼×" + armor + ";";
-        description += "º®±ù" + cold + "; ";
+        description += "º®±ù" + ice + "; ";
     }
 }

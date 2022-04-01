@@ -18,10 +18,6 @@ public class CardStatusTip : MonoBehaviour
     private void FixedUpdate()
     {
         string _s = "";
-        if (myCard.freezed > 0)
-        {
-            _s += "∂≥Ω·" + myCard.freezed + ";";
-        }
         if (myCard.burn)
         {
             _s += "»º…’;";
