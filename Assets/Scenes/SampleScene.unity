@@ -2625,7 +2625,6 @@ MonoBehaviour:
   comboColor: 0
   comboCount: 0
   playCardTime: 0
-  maxPlayerCardTime: 5
 --- !u!114 &1066303383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5271,6 +5270,10 @@ PrefabInstance:
       propertyPath: cardPosPfb
       value: 
       objectReference: {fileID: 4263522474063972596, guid: 407f289f735b49e4fa5f3c4bf2172839, type: 3}
+    - target: {fileID: 7091982074015172120, guid: cd60b256bb623fe46aa1f46f33ca180c, type: 3}
+      propertyPath: maxFlowLenth
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7091982074015172120, guid: cd60b256bb623fe46aa1f46f33ca180c, type: 3}
       propertyPath: cardPoses.Array.size
       value: 0

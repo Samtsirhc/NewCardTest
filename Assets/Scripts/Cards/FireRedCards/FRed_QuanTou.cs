@@ -30,7 +30,6 @@ public class FRed_QuanTou : FireRedCard
         CastDamage(damage);
         AddFire(fire);
     }
-
     protected override void UpdateDes()
     {
         base.UpdateDes();

@@ -24,15 +24,24 @@ public class FRed_BingYuHuoZhiJian : FireRedCard
     }
     public override int CastDamage(int num)
     {
+        int _damage = 0;
         if (burn || icebound)
         {
             num *= burnFactor;
+            _damage = BattleManager.Instance.enemy.TakeDamage(num);
+            if (_damage > 0)
+            {
+                OnCauseDamage();
+                GetArmor(_damage * iceboundFactor);
+            }
         }
-        int _damage = BattleManager.Instance.enemy.TakeDamage(num);
-        if (_damage > 0)
+        else
         {
-            OnCauseDamage();
-            GetArmor(_damage * iceboundFactor);
+            _damage = BattleManager.Instance.enemy.TakeDamage(num);
+            if (_damage > 0)
+            {
+                OnCauseDamage();
+            }
         }
         playInfo["…À∫¶"] += _damage;
         return _damage;

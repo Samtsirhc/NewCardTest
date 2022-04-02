@@ -13,7 +13,7 @@ public class MyCard : MonoBehaviour
     [HideInInspector]
     public virtual CardType cardType { get { return CardType.BASIC; } }
     [HideInInspector]
-    public int position;
+    public int position;    // 在牌流里面的位置 0开始，最右侧
     [HideInInspector]
     public Dictionary<string, int> playInfo;    // 记录一些伤害之类的东西
     [HideInInspector]
@@ -242,13 +242,13 @@ public class MyCard : MonoBehaviour
         OnUse();
         AfterUse();
         EventCenter.Broadcast<MyCard>(E_EventType.CARD_USED, this);
-    }
+    }   // 打出卡牌
     public virtual void TriggerCard()
     {
         PreUse();
         OnUse();
         AfterUse();
-    }
+    }   // 触发卡牌，而不是打出卡牌
     public virtual void PreUse()
     {
 

@@ -36,17 +36,11 @@ public class Unit : MonoBehaviour
     {
         EventCenter.AddListener(E_EventType.END_TURN, OnTurnEnd);
     }
-
     protected virtual void OnDestroy()
     {
         EventCenter.RemoveListener(E_EventType.END_TURN, OnTurnEnd);
     }
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void FixedUpdate()
     {
         UpdateUnitStatus();
@@ -66,7 +60,6 @@ public class Unit : MonoBehaviour
         }
         return _damage;
     }
-
     #region 流程相关
 
     public virtual void OnTurnEnd()

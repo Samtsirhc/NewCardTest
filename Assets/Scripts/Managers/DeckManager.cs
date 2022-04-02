@@ -10,7 +10,8 @@ public class DeckManager : Singleton<DeckManager>
     public List<GameObject> cardPoses;
     public List<GameObject> myCardInFlow;
     private List<GameObject> cardBuffer;
-    private int maxFlowLenth = 5;
+    public int maxFlowLenth = 5;
+    public int playTimes = 5;
 
     public bool descriptionType;
     // Start is called before the first frame update

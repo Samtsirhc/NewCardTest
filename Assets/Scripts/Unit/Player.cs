@@ -10,7 +10,6 @@ public class Player : Unit
         get { return _fire; }
         set
         {
-            Debug.Log(canGetFire);
             if (canGetFire)
             {
                 _fire = value;
