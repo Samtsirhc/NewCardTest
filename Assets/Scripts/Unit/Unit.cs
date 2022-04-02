@@ -8,9 +8,6 @@ public class Unit : MonoBehaviour
     public GameObject ShouUnitStatus;
     virtual public int hp { get; set; }
     virtual public int armor { get; set; }
-    virtual public int anger { get; set; }
-    virtual public int calm { get; set; }
-    virtual public int cold { get; set; }
     virtual public int fire { get; set; }
     virtual public int ice { get; set; }
 
@@ -25,25 +22,13 @@ public class Unit : MonoBehaviour
         {
             _s += "»¤¼× " + armor + "\n";
         }
-        if (anger > 0)
-        {
-            _s += "·ßÅ­ " + anger + "\n";
-        }
-        if (calm > 0)
-        {
-            _s += "Àä¾² " + calm + "\n";
-        }
-        if (cold > 0)
-        {
-            _s += "º®Àä " + cold + "\n";
-        }
         if (fire > 0)
         {
             _s += "»ðÑæ " + fire + "\n";
         }
         if (ice > 0)
         {
-            _s += "±ùËª " + ice + "\n";
+            _s += "º®±ù " + ice + "\n";
         }
         ShouUnitStatus.GetComponent<Text>().text = _s;
     }
@@ -66,10 +51,6 @@ public class Unit : MonoBehaviour
     {
         UpdateUnitStatus();
     }
-
-
-
-
     public int TakeDamage(int damage)
     {
         int _damage = 0;

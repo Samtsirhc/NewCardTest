@@ -29,7 +29,19 @@ public class MyCard : MonoBehaviour
 
     // 火焰
     public int fire;
-    public bool burn = false;
+    public bool burn
+    {
+        get { return _burn; }
+        set
+        {
+            _burn = value; 
+            if (value)
+            {
+                OnCardBurn();
+            } 
+        }
+    }
+    private bool _burn = false;
     public int burnFactor = 2;
 
     // 寒冰
@@ -48,7 +60,6 @@ public class MyCard : MonoBehaviour
     protected virtual void Awake()
     {
         InitTriggers();
-        SwitchDescriptionType();
         EventCenter.AddListener(E_EventType.END_TURN, OnTurnEnd);
         playInfo = new Dictionary<string, int>();
         playInfo.Add("伤害", 0);
@@ -56,7 +67,7 @@ public class MyCard : MonoBehaviour
     }
     protected virtual void Start()
     {
-
+        SetLevelData();
     }
     protected virtual void OnDestroy()
     {
@@ -64,7 +75,6 @@ public class MyCard : MonoBehaviour
     }
     protected virtual void FixedUpdate()
     {
-        SwitchDescriptionType();
         UpdateDes();
     }
     #endregion
@@ -74,7 +84,6 @@ public class MyCard : MonoBehaviour
     {
 
     }
-
     private void InitTriggers()
     {
         eventTrigger = GetComponent<EventTrigger>();
@@ -85,8 +94,7 @@ public class MyCard : MonoBehaviour
         AddPointerEvent(eventTrigger, EventTriggerType.PointerClick, PointerClick);
 
     }
-
-    private void PointerClick(BaseEventData arg0)
+    protected virtual void PointerClick(BaseEventData arg0)
     {
         if (Input.GetKey(KeyCode.A))
         {
@@ -98,7 +106,7 @@ public class MyCard : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            EventCenter.Broadcast(E_EventType.DELETE_CARD, position);
+            DeleteSelf();
         }
         else if (Input.GetKey(KeyCode.E))
         {
@@ -115,17 +123,13 @@ public class MyCard : MonoBehaviour
         {
             if (!burn && !icebound)
             {
-                burn = true;
-                string _s = string.Format("【{0}】燃烧了", cardName);
-                TipManager.ShowTip(_s);
+                BurnCard();
                 return;
             }
             else if (burn && !icebound)
             {
-                burn = false;
-                icebound = true;
-                string _s = string.Format("【{0}】冰封了", cardName);
-                TipManager.ShowTip(_s);
+                IceboundCard();
+                AddFire(10);
                 return;
             }
             else if (burn || icebound)
@@ -134,11 +138,11 @@ public class MyCard : MonoBehaviour
                 icebound = false;
                 string _s = string.Format("【{0}】恢复正常", cardName);
                 TipManager.ShowTip(_s);
+                AddIce(10);
                 return;
             }
         }
     }
-
     private void PointerUp(BaseEventData arg0)
     {
         MyCard _other;
@@ -170,38 +174,31 @@ public class MyCard : MonoBehaviour
         entry.callback.AddListener(callback);
         eventTrigger.triggers.Add(entry);
     }
-    public void SwitchDescriptionType()
-    {
-        if (DeckManager.Instance.descriptionType)
-        {
-            description = originalDescription;
-        }
-        else
-        {
-            description = tureDescription;
-        }
-    }
     #endregion
 
     #region 战斗
-    public virtual int CastDamage(int damage)
+    public virtual int CastDamage(int num)
     {
         if (burn)
         {
-            damage *= burnFactor;
+            num *= burnFactor;
         }
-        int _damage = BattleManager.Instance.enemy.TakeDamage(damage);
+        int _damage = BattleManager.Instance.enemy.TakeDamage(num);
         if (_damage > 0)
         {
             OnCauseDamage();
             if (icebound)
             {
-                GetArmor(_damage);
+                GetArmor(_damage * iceboundFactor);
             }
         }
         playInfo["伤害"] += _damage;
         return _damage;
     } 
+    public virtual int DamageSelf(int num)
+    {
+        return BattleManager.Instance.player.TakeDamage(num);
+    }
     public virtual void GetArmor(int armor)
     {
         BattleManager.Instance.player.armor += armor;
@@ -210,19 +207,35 @@ public class MyCard : MonoBehaviour
     public virtual void OnCauseDamage()
     {
     }
-    public virtual void AddCold(int cold)
+    #endregion
+
+    #region 战斗相关的状态事件
+    protected virtual void BurnCard()
     {
-        BattleManager.Instance.enemy.cold += cold;
+        burn = true;
+        icebound = false;
+        string _s = string.Format("【{0}】燃烧了", cardName);
+        TipManager.ShowTip(_s);
+        AddFire(-10);
+    }
+    protected virtual void OnCardBurn()
+    {
+
+    }
+    protected virtual void IceboundCard()
+    {
+        burn = false;
+        icebound = true;
+        string _s = string.Format("【{0}】冰封了", cardName);
+        TipManager.ShowTip(_s);
+        AddIce(-10);
     }
     #endregion
 
     #region 流程相关
-
-    public virtual void OnFreezed()
+    public virtual void SetLevelData()
     {
-
     }
-
     public virtual void PlayCard()
     {
         PreUse();
@@ -236,41 +249,57 @@ public class MyCard : MonoBehaviour
         OnUse();
         AfterUse();
     }
-
     public virtual void PreUse()
     {
 
     }
     public virtual void OnUse()
     {
-        //GetArmor(additionalArmor);
+
     }
     public virtual void AfterUse()
     {
+        OnLose();
         ShowCardPlayInfo();
     }
     public virtual void OnGet()
     {
         
     }
+    public virtual void DeleteSelf()
+    {
+        OnDelete();
+        EventCenter.Broadcast(E_EventType.DELETE_CARD, position);
+    }
+    public virtual void OnDelete()
+    {
+        OnLose();
+    }
+    public virtual void OnLose()    // 被删除、打出都会触发
+    {
+
+    }
     public virtual void ShowCardPlayInfo()
     {
         string _tmp = string.Format("【{0}】-【{1}】伤害，【{2}】护甲", cardName, playInfo["伤害"], playInfo["护甲"]);
         TipManager.ShowTip(_tmp);
     }
-
     public virtual void OnTurnEnd()
     {
     }
-
     public virtual void OnTurnStart()
     {
 
     }
-
     #endregion
 
     #region 获取数据
+    public int GetFire() { return BattleManager.Instance.player.fire; }
+    public void SetFire(int num) { BattleManager.Instance.player.fire = num; }
+    public void AddFire(int num) { BattleManager.Instance.player.fire += num; }
+    public int GetIce() { return BattleManager.Instance.player.ice; }
+    public void SetIce(int num) { BattleManager.Instance.player.ice = num; }
+    public void AddIce(int num) { BattleManager.Instance.player.ice += num; }
     public bool IsStartCard()
     {
         return BattleManager.Instance.maxPlayerCardTime - 1 == BattleManager.Instance.playCardTime;
@@ -301,6 +330,28 @@ public class MyCard : MonoBehaviour
             return null;
         }
     }
+    public MyCard GetLeftCard()
+    {
+        if (IsIndexLegal(position + 1))
+        {
+            return DeckManager.Instance.myCardInFlow[position + 1].GetComponent<MyCard>();
+        }
+        else
+        {
+            return null;
+        }
+    }
+    public MyCard GetRightCard()
+    {
+        if (IsIndexLegal(position - 1))
+        {
+            return DeckManager.Instance.myCardInFlow[position - 1].GetComponent<MyCard>();
+        }
+        else
+        {
+            return null;
+        }
+    }
     public bool IsIndexLegal(int index)
     {
         int _flow_length = DeckManager.Instance.myCardInFlow.Count;
@@ -323,6 +374,5 @@ public class MyCard : MonoBehaviour
         return false;
     }
     #endregion
-
 
 }

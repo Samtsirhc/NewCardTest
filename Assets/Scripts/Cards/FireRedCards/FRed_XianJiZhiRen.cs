@@ -1,41 +1,56 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class FRed_QuanTou : FireRedCard
+public class FRed_XianJiZhiRen : FireRedCard
 {
+    public int selfDamage = 5;
+
     public override void SetLevelData()
     {
         base.SetLevelData();
-        fire = 2;
         switch (cardLevel)
         {
             case 1:
-                damage = 5;
-                break;
-            case 2:
                 damage = 7;
                 break;
+            case 2:
+                damage = 10;
+                break;
             case 3:
-                damage = 12;
-                fire = 3;
+                damage = 15;
                 break;
             default:
                 break;
         }
     }
+    protected override void PointerClick(BaseEventData arg0)
+    {
+        base.PointerClick(arg0);
+        if (Input.GetKey(KeyCode.F))
+        {
+            SacrificeBurn();
+        }
+    }
+
+    protected void SacrificeBurn()
+    {
+        burn = true;
+        icebound = false;
+        DamageSelf(selfDamage);
+    }
+
     public override void OnUse()
     {
         base.OnUse();
         CastDamage(damage);
-        AddFire(fire);
     }
-
     protected override void UpdateDes()
     {
         base.UpdateDes();
         description = "";
         description += "ÉËº¦" + damage + ";";
-        description += "»ðÑæ" + fire + ";";
+        description += "Ï×¼À£ºÈ¼ÉÕ×Ô¼º¶ø²»ÏûºÄ»ðÑæ£¬ÊÜµ½" + selfDamage + "ÉËº¦";
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FRed_LianXuanQuan : FireRedCard
+public class FRed_BingYuHuoZhiJian : FireRedCard
 {
     public override void SetLevelData()
     {
@@ -11,33 +11,37 @@ public class FRed_LianXuanQuan : FireRedCard
         {
             case 1:
                 damage = 5;
-                fire = 3;
                 break;
             case 2:
                 damage = 7;
-                fire = 4;
                 break;
             case 3:
-                damage = 10;
-                fire = 5;
+                damage = 12;
                 break;
             default:
                 break;
         }
     }
+    public override int CastDamage(int num)
+    {
+        if (burn || icebound)
+        {
+            num *= burnFactor;
+        }
+        int _damage = BattleManager.Instance.enemy.TakeDamage(num);
+        if (_damage > 0)
+        {
+            OnCauseDamage();
+            GetArmor(_damage * iceboundFactor);
+        }
+        playInfo["伤害"] += _damage;
+        return _damage;
+    }
+
     public override void OnUse()
     {
         base.OnUse();
         CastDamage(damage);
-        if (GetComboCount() >= 1)
-        {
-            AddFire(fire);
-        }
-        //后面有也算连携
-        //else if (IsNextCardCombo())
-        //{
-        //    BattleManager.Instance.player.fire += fire;
-        //}
     }
 
     protected override void UpdateDes()
@@ -45,6 +49,6 @@ public class FRed_LianXuanQuan : FireRedCard
         base.UpdateDes();
         description = "";
         description += "伤害" + damage + ";";
-        description += "连携：火焰" + fire + ";";
+        description += "被燃烧或结冰时，同时有两种效果";
     }
 }

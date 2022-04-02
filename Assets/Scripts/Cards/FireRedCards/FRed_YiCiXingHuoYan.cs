@@ -2,44 +2,49 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FRed_PaoXiao : FireRedCard
+public class FRed_YiCiXingHuoYan : FireRedCard
 {
-    public int fireStart;
+    
+    public static bool showed = false;
     public override void SetLevelData()
     {
         base.SetLevelData();
+        fire = 30;
         switch (cardLevel)
         {
             case 1:
-                fire = 5;
-                fireStart = 5;
                 break;
             case 2:
-                fire = 7;
-                fireStart = 5;
+                fire = 40;
                 break;
             case 3:
-                fire = 8;
-                fireStart = 8;
+                fire = 50;
                 break;
             default:
                 break;
         }
     }
+    public override void OnGet()
+    {
+        if (showed)
+        {
+            DeleteSelf();
+        }
+        showed = true;
+        base.OnGet();
+    }
     public override void OnUse()
     {
         base.OnUse();
-        if (IsStartCard())
-        {
-            AddFire(fireStart);
-        }
         AddFire(fire);
+        BattleManager.Instance.player.GetComponent<Player>().canGetFire = false;
     }
     protected override void UpdateDes()
     {
         base.UpdateDes();
         description = "";
         description += "火焰" + fire + ";";
-        description += "初始：火焰+" + fireStart + ";";
+        description += "本场战斗无法再获得火焰；唯一";
     }
+
 }

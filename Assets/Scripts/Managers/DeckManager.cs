@@ -21,6 +21,7 @@ public class DeckManager : Singleton<DeckManager>
         EventCenter.AddListener<int>(E_EventType.DELETE_CARD, DeleteCard);
         EventCenter.AddListener<int, int>(E_EventType.SWITCH_CARD, SwitchCard);
         EventCenter.AddListener<MyCard>(E_EventType.CARD_USED, CardUsed);
+        InitMyCardPfb();
         myCardInFlow = new List<GameObject>();
         for (int i = 0; i < maxFlowLenth; i++)
         {
@@ -29,6 +30,15 @@ public class DeckManager : Singleton<DeckManager>
             cardPoses.Add(_card_pos);
             _card_pos.GetComponentInChildren<Text>().text = i.ToString();
             myCardInFlow.Add(null);
+        }
+    }
+
+    private void InitMyCardPfb()
+    {
+        myCardPfbs = new List<GameObject>();
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            myCardPfbs.Add(transform.GetChild(i).gameObject);
         }
     }
     private void OnDestroy()
@@ -89,7 +99,6 @@ public class DeckManager : Singleton<DeckManager>
         myCardInFlow[_index2].GetComponent<MyCard>().position = _index1;
         SetCardPosition();
     }
-
     public int curIndex = 0;
     public List<int> indexes;
     public void DrawCard()

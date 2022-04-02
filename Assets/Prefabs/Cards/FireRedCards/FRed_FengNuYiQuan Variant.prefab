@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &54908788678099605
+--- !u!1001 &276644966594077690
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 229400365221899593, guid: ca3a93908411f9e4fa70a02c70dab2d9, type: 3}
       propertyPath: m_Name
-      value: FRed_LianXuanQuan Variant 1
+      value: FRed_FengNuYiQuan Variant
       objectReference: {fileID: 0}
     - target: {fileID: 229400365221899594, guid: ca3a93908411f9e4fa70a02c70dab2d9, type: 3}
       propertyPath: m_Pivot.x
@@ -77,11 +77,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 229400365221899594, guid: ca3a93908411f9e4fa70a02c70dab2d9, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 195
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 229400365221899594, guid: ca3a93908411f9e4fa70a02c70dab2d9, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 140
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 229400365221899594, guid: ca3a93908411f9e4fa70a02c70dab2d9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -98,36 +98,34 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 12940547, guid: ca3a93908411f9e4fa70a02c70dab2d9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ca3a93908411f9e4fa70a02c70dab2d9, type: 3}
---- !u!1 &283143116982185948 stripped
+--- !u!1 &69851196639678131 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 229400365221899593, guid: ca3a93908411f9e4fa70a02c70dab2d9, type: 3}
-  m_PrefabInstance: {fileID: 54908788678099605}
+  m_PrefabInstance: {fileID: 276644966594077690}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2265001138852899560
+--- !u!114 &1911104303551013139
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 283143116982185948}
+  m_GameObject: {fileID: 69851196639678131}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ac82da33f910224da3613d62721a5b4, type: 3}
+  m_Script: {fileID: 11500000, guid: 3c215c61a318cbc458e872e48aa234c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardLevel: 3
+  cardLevel: 1
   maxLevel: 3
   position: 0
   description: 
-  cardName: "\u8FDE\u7EED\u62F3"
-  originalDescription: "5\u4F24\u5BB3\uFF1B\u8FDE\u643A\uFF1A3\u706B\u7130"
-  tureDescription: "5\u4F24\u5BB3\uFF1B\u8FDE\u643A\uFF1A3\u706B\u7130"
+  cardName: "\u6124\u6012\u4E00\u62F3"
+  originalDescription: "5\u4F24\u5BB3\uFF1B\u71C3\u70E7\u6548\u679C\u4E3A3\u500D"
+  tureDescription: "5\u4F24\u5BB3\uFF1B\u71C3\u70E7\u6548\u679C\u4E3A3\u500D"
   damage: 0
   armor: 0
-  additionalArmor: 0
-  coldAlarm: 0
-  burn: 0
-  burnFactor: 2
   fire: 0
-  cold: 0
+  burnFactor: 2
+  ice: 0
   icebound: 0
+  iceboundFactor: 1
