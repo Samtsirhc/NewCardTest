@@ -13,7 +13,8 @@ public class BattleManager : Singleton<BattleManager>
     public CardType comboColor;
     public int comboCount = 0;
     public int playCardTime;
-    public int maxPlayerCardTime;
+    [HideInInspector]
+    public int maxPlayerCardTime { get { return DeckManager.Instance.playTimes; } }
     // Start is called before the first frame update
 
     override protected void Awake()

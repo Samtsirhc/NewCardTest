@@ -10,7 +10,8 @@ public class DeckManager : Singleton<DeckManager>
     public List<GameObject> cardPoses;
     public List<GameObject> myCardInFlow;
     private List<GameObject> cardBuffer;
-    private int maxFlowLenth = 5;
+    public int maxFlowLenth = 5;
+    public int playTimes = 5;
 
     public bool descriptionType;
     // Start is called before the first frame update
@@ -21,6 +22,7 @@ public class DeckManager : Singleton<DeckManager>
         EventCenter.AddListener<int>(E_EventType.DELETE_CARD, DeleteCard);
         EventCenter.AddListener<int, int>(E_EventType.SWITCH_CARD, SwitchCard);
         EventCenter.AddListener<MyCard>(E_EventType.CARD_USED, CardUsed);
+        InitMyCardPfb();
         myCardInFlow = new List<GameObject>();
         for (int i = 0; i < maxFlowLenth; i++)
         {
@@ -29,6 +31,15 @@ public class DeckManager : Singleton<DeckManager>
             cardPoses.Add(_card_pos);
             _card_pos.GetComponentInChildren<Text>().text = i.ToString();
             myCardInFlow.Add(null);
+        }
+    }
+
+    private void InitMyCardPfb()
+    {
+        myCardPfbs = new List<GameObject>();
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            myCardPfbs.Add(transform.GetChild(i).gameObject);
         }
     }
     private void OnDestroy()
@@ -89,32 +100,6 @@ public class DeckManager : Singleton<DeckManager>
         myCardInFlow[_index2].GetComponent<MyCard>().position = _index1;
         SetCardPosition();
     }
-    public void MoveForward()
-    {
-        for (int i = 0; i < myCardInFlow.Count; i++)
-        {
-            if (myCardInFlow[i].GetComponent<MyCard>().freezed >= 1)
-            {
-                for (int j = i + 1; j < myCardInFlow.Count; j++)
-                {
-                    if (myCardInFlow[j].GetComponent<MyCard>().position == 0)
-                    {
-                        continue;
-                    }
-                    if (myCardInFlow[j].GetComponent<MyCard>().freezed <= 0)
-                    {
-                        myCardInFlow[j].GetComponent<MyCard>().position -= 1;
-                        continue;
-                    }
-                }
-            }
-            else
-            {
-                myCardInFlow[i].GetComponent<MyCard>().position -= 1;
-            }
-        }
-    }
-
     public int curIndex = 0;
     public List<int> indexes;
     public void DrawCard()
@@ -224,15 +209,7 @@ public class DeckManager : Singleton<DeckManager>
     }
     public void PlayFirstCard()
     {
-        for (int i = 0; i < maxFlowLenth; i++)
-        {
-            if (myCardInFlow[i].GetComponent<MyCard>().freezed <= 0)
-            {
-                myCardInFlow[i].GetComponent<MyCard>().PlayCard();
-                //Debug.Log("´ò³öÁË " + i);
-                return;
-            }
-        }
+        myCardInFlow[0].GetComponent<MyCard>().PlayCard();
     }
 
 }

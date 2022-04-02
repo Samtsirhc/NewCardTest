@@ -12,15 +12,15 @@ public class IBlue_BingSun : IceBlueCard
         {
             case 1:
                 armor = 5;
-                cold = 4;
+                ice = 4;
                 break;
             case 2:
                 armor = 7;
-                cold = 5;
+                ice = 5;
                 break;
             case 3:
                 armor = 9;
-                cold = 7;
+                ice = 7;
                 break;
             default:
                 break;
@@ -34,13 +34,13 @@ public class IBlue_BingSun : IceBlueCard
     public override void OnGet()
     {
         base.OnGet();
-        BattleManager.Instance.player.ice += cold;
+        BattleManager.Instance.player.ice += ice;
     }
     protected override void UpdateDes()
     {
         base.UpdateDes();
         description = "";
         description += "护甲" + armor + ";";
-        description += "获得：寒冰" + cold + "; ";
+        description += "获得：寒冰" + ice + "; ";
     }
 }

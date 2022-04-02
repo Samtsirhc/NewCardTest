@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class FRed_FengNuYiQuan : FireRedCard
 {
-    protected override void Start()
+    public override void SetLevelData()
     {
-        base.Start();
+        base.SetLevelData();
         burnFactor = 3;
         switch (cardLevel)
         {

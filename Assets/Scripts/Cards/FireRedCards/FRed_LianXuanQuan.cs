@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class FRed_LianXuanQuan : FireRedCard
 {
-    protected override void Start()
+    public override void SetLevelData()
     {
-        base.Start();
+        base.SetLevelData();
         switch (cardLevel)
         {
             case 1:
@@ -31,8 +31,9 @@ public class FRed_LianXuanQuan : FireRedCard
         CastDamage(damage);
         if (GetComboCount() >= 1)
         {
-            BattleManager.Instance.player.fire += fire;
+            AddFire(fire);
         }
+        //后面有也算连携
         //else if (IsNextCardCombo())
         //{
         //    BattleManager.Instance.player.fire += fire;
