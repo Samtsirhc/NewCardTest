@@ -195,10 +195,33 @@ public class MyCard : MonoBehaviour
         playInfo["…À∫¶"] += _damage;
         return _damage;
     } 
+
+    public virtual int CastPiercingDamage(int num){
+        if (burn)
+        {
+            num *= burnFactor;
+        }
+        int _damage = BattleManager.Instance.enemy.TakePiercingDamage(num);
+        if (_damage > 0)
+        {
+            OnCauseDamage();
+            if (icebound)
+            {
+                GetArmor(_damage * iceboundFactor);
+            }
+        }
+        playInfo["…À∫¶"] += _damage;
+        return _damage;
+    }
     public virtual int DamageSelf(int num)
     {
         return BattleManager.Instance.player.TakeDamage(num);
     }
+    
+    /// <summary>
+    /// add armor
+    /// </summary>
+    /// <param name="armor"></param>
     public virtual void GetArmor(int armor)
     {
         BattleManager.Instance.player.armor += armor;

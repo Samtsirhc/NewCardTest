@@ -60,6 +60,16 @@ public class Unit : MonoBehaviour
         }
         return _damage;
     }
+
+    /// <summary>
+    /// ChuanCi ShangHai 穿刺伤害
+    /// </summary>
+    /// <param name="damage"></param>
+    /// <returns></returns>
+    public int TakePiercingDamage(int damage){
+        hp -= damage;
+        return damage;
+    }
     #region 流程相关
 
     public virtual void OnTurnEnd()
