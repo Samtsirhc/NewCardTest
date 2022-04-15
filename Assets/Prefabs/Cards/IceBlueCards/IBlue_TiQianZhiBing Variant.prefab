@@ -73,11 +73,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4407413331710018573, guid: e4aa9ce7088195c44a8d8ee8dfef0554, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 195
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4407413331710018573, guid: e4aa9ce7088195c44a8d8ee8dfef0554, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 140
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4407413331710018573, guid: e4aa9ce7088195c44a8d8ee8dfef0554, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -93,7 +93,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4407413331710018574, guid: e4aa9ce7088195c44a8d8ee8dfef0554, type: 3}
       propertyPath: m_Name
-      value: IBlue_HuanManZhiBing Variant
+      value: IBlue_TiQianZhiBing Variant
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1408441435370948716, guid: e4aa9ce7088195c44a8d8ee8dfef0554, type: 3}

@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2743264982341635692, guid: 56f143c2f9fea48499262a71de6904e8, type: 3}
       propertyPath: m_Name
-      value: FireRedCard Variant
+      value: FRed_HuoYanChongJi Variant
       objectReference: {fileID: 0}
     - target: {fileID: 2743264982341635695, guid: 56f143c2f9fea48499262a71de6904e8, type: 3}
       propertyPath: m_Pivot.x
@@ -77,11 +77,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2743264982341635695, guid: 56f143c2f9fea48499262a71de6904e8, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 195
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2743264982341635695, guid: 56f143c2f9fea48499262a71de6904e8, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 140
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2743264982341635695, guid: 56f143c2f9fea48499262a71de6904e8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -130,3 +130,4 @@ MonoBehaviour:
   icebound: 0
   iceboundFactor: 1
   maxFireCost: 0
+  nowFire: 0

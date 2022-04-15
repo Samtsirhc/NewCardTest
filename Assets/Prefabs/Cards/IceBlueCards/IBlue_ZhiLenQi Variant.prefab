@@ -73,11 +73,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3158861275942873756, guid: b57351f251e9b6049ad544f7ede067a7, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 195
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3158861275942873756, guid: b57351f251e9b6049ad544f7ede067a7, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 140
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3158861275942873756, guid: b57351f251e9b6049ad544f7ede067a7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -93,7 +93,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3158861275942873759, guid: b57351f251e9b6049ad544f7ede067a7, type: 3}
       propertyPath: m_Name
-      value: IBlue_ZhiLenQi
+      value: IBlue_ZhiLenQi Variant
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 565724569, guid: b57351f251e9b6049ad544f7ede067a7, type: 3}
@@ -117,13 +117,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardLevel: 1
   maxLevel: 3
-  additionalArmor: 0
   position: 0
-  coldAlarm: 0
-  burn: 0
-  burnFactor: 2
-  icebound: 0
   description: 
   cardName: "\u5236\u51B7\u5668"
   originalDescription: "\u5236\u51B7\uFF1A\u56DE\u5408\u7ED3\u675F\u65F6\u4F7F\u4E34\u8FD1\u7684\u724C\u83B7\u5F971\u62A4\u7532\u6548\u679C"
   tureDescription: "\u5236\u51B7\uFF1A\u56DE\u5408\u7ED3\u675F\u65F6\u4F7F\u4E34\u8FD1\u7684\u724C\u83B7\u5F971\u62A4\u7532\u6548\u679C"
+  damage: 0
+  armor: 0
+  fire: 0
+  burnFactor: 2
+  ice: 0
+  icebound: 0
+  iceboundFactor: 1

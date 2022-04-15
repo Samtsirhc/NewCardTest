@@ -41,7 +41,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 195, y: 140}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 150, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2743264982341635681
@@ -97,14 +97,17 @@ MonoBehaviour:
   cardLevel: 1
   maxLevel: 3
   position: 9
-  coldAlarm: 0
-  burn: 0
-  burnFactor: 2
-  icebound: 0
   description: 
   cardName: "\u793A\u4F8B\u5361\u724C"
   originalDescription: "\u793A\u4F8B\u5361\u724C\u7684\u63CF\u8FF0"
   tureDescription: "\u54C8\u54C8\u54C8\u54C8\u54C8\u54C8\u54C8\u54C8"
+  damage: 0
+  armor: 0
+  fire: 0
+  burnFactor: 2
+  ice: 0
+  icebound: 0
+  iceboundFactor: 1
 --- !u!114 &534252300
 MonoBehaviour:
   m_ObjectHideFlags: 0
