@@ -23,7 +23,7 @@ public class Enemy : Unit
 
     protected override void UpdateUnitStatus() {
         base.UpdateUnitStatus();
-        ShowUnitStatus.GetComponent<Text>().text += "下回合： " + nextAct + "\n";
+        //ShowUnitStatus.GetComponent<Text>().text += "下回合： " + nextAct + "\n"; //TODO
     }
     protected virtual void OnEnemyTurn()
     {

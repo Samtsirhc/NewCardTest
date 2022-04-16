@@ -32,6 +32,6 @@ public class FRed_ChaiHuo : FireRedCard
 
     protected override void UpdateDes()
     {
-        description = "被燃烧后消失，传递燃烧；拥有至少10点火焰才出现";
+        description = "被燃烧后消失\n传递燃烧\n拥有至少10点火焰才出现";
     }
 }

@@ -50,7 +50,7 @@ public class FRed_XianJiZhiRen : FireRedCard
     {
         base.UpdateDes();
         description = "";
-        description += "伤害" + damage + ";";
-        description += "献祭：燃烧自己而不消耗火焰，受到" + selfDamage + "伤害";
+        description += "伤害" + damage + "\n";
+        description += "献祭：燃烧时不消耗火焰，但受到" + selfDamage + "伤害";
     }
 }

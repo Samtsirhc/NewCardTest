@@ -12,6 +12,10 @@ public class Player : Unit
         {
             if (canGetFire)
             {
+                if (value > _fire)
+                {
+                    SoundManager.Instance.GetFire();
+                }
                 _fire = value;
                 Debug.Log(value + "火焰");
             }
@@ -24,9 +28,23 @@ public class Player : Unit
             }
         }
     }
+    public override int ice
+    {
+        get { return _ice; }
+        set
+        {
+            if (value > _ice)
+            {
+                SoundManager.Instance.GetIce();
+            }
+            _ice = value;
+            Debug.Log(value + "寒冰");
+        }
+    }
     [HideInInspector]
     public bool canGetFire = true;
     private int _fire = 0;
+    private int _ice = 0;
 
     protected override void Start()
     {
@@ -37,7 +55,7 @@ public class Player : Unit
 
     protected override void UpdateUnitStatus() {
         base.UpdateUnitStatus();
-        ShowUnitStatus.GetComponent<Text>().text += "费用 " + BattleManager.Instance.playCost + "\n";
+        //ShowUnitStatus.GetComponent<Text>().text += "费用 " + BattleManager.Instance.playCost + "\n";   // TODO
     }
 
     public override void OnTurnEnd(){

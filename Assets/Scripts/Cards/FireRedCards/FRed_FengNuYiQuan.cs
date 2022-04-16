@@ -33,7 +33,7 @@ public class FRed_FengNuYiQuan : FireRedCard
     {
         base.UpdateDes();
         description = "";
-        description += "…À∫¶" + damage + ";";
-        description += "»º…’£∫…À∫¶Œ™3±∂;";
+        description += "…À∫¶" + damage + "\n";
+        description += "»º…’…À∫¶Œ™3±∂";
     }
 }

@@ -202,7 +202,7 @@ public class MyCard : MonoBehaviour
                     burn = false;
                     AddFire(10);
                 }
-                IceboundCard();
+                FreezeCard();
                 return;
             }
             else if (icebound)
@@ -354,7 +354,7 @@ public class MyCard : MonoBehaviour
                 burn = false;
                 AddFire(10);
             }
-            IceboundCard();
+            FreezeCard();
             return;
         }
         else if (icebound)
@@ -365,6 +365,7 @@ public class MyCard : MonoBehaviour
     }
     protected virtual void BurnCard()
     {
+        SoundManager.Instance.BurnCard();
         burn = true;
         icebound = false;
         string _s = string.Format("°æ{0}°ø»º…’¡À", cardName);
@@ -375,8 +376,9 @@ public class MyCard : MonoBehaviour
     {
 
     }
-    protected virtual void IceboundCard()
+    protected virtual void FreezeCard()
     {
+        SoundManager.Instance.FreezeCard();
         burn = false;
         icebound = true;
         string _s = string.Format("°æ{0}°ø±˘∑‚¡À", cardName);

@@ -34,7 +34,7 @@ public class FRed_QuanTou : FireRedCard
     {
         base.UpdateDes();
         description = "";
-        description += "ÉËº¦" + damage + ";";
-        description += "»ðÑæ" + fire + ";";
+        description += "ÉËº¦" + damage + "\n";
+        description += "»ðÑæ" + fire + "";
     }
 }

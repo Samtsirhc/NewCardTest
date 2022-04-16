@@ -40,7 +40,7 @@ public class IBlue_BingSun : IceBlueCard
     {
         base.UpdateDes();
         description = "";
-        description += "护甲" + armor + ";";
-        description += "获得：寒冰" + ice + "; ";
+        description += "护甲" + armor + "\n";
+        description += "获得：寒冰" + ice + "";
     }
 }

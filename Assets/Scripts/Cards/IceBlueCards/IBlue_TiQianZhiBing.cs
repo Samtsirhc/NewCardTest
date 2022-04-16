@@ -34,6 +34,6 @@ public class IBlue_TiQianZhiBing : IceBlueCard
     {
         base.UpdateDes();
         description = "";
-        description += "获得：获得护甲" + armor + "; ";
+        description += "获得：获得护甲" + armor + "";
     }
 }

@@ -57,7 +57,7 @@ public class FRed_BingYuHuoZhiJian : FireRedCard
     {
         base.UpdateDes();
         description = "";
-        description += "伤害" + damage + ";";
-        description += "被燃烧或结冰时，同时有两种效果";
+        description += "伤害" + damage + "\n";
+        description += "燃烧或结冰同时有两种效果";
     }
 }

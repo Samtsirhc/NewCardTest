@@ -39,7 +39,7 @@ public class IBlue_BingFengShu : IceBlueCard
     {
         base.UpdateDes();
         description = "";
-        description += "伤害" + damage + ";";
-        description += "不消耗冰封之心";
+        description += "伤害" + damage + "\n";
+        description += "冰冻不消耗寒冰";
     }
 }

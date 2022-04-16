@@ -43,8 +43,8 @@ public class FRed_YiCiXingHuoYan : FireRedCard
     {
         base.UpdateDes();
         description = "";
-        description += "火焰" + fire + ";";
-        description += "本场战斗无法再获得火焰；唯一";
+        description += "火焰" + fire + "\n";
+        description += "本场战斗无法再获得火焰\n唯一";
     }
 
 }

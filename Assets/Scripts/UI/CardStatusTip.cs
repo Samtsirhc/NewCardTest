@@ -20,11 +20,11 @@ public class CardStatusTip : MonoBehaviour
         string _s = "";
         if (myCard.burn)
         {
-            _s += "È¼ÉÕ;";
+            _s += "È¼ÉÕ";
         }
         if (myCard.icebound)
         {
-            _s += "±ù·â;";
+            _s += "±ù·â";
         }
         text.text = _s;
     }

@@ -44,7 +44,7 @@ public class FRed_LianXuanQuan : FireRedCard
     {
         base.UpdateDes();
         description = "";
-        description += "ÉËº¦" + damage + ";";
-        description += "Á¬Ð¯£º»ðÑæ" + fire + ";";
+        description += "ÉËº¦" + damage + "\n";
+        description += "Á¬Ð¯£º»ðÑæ" + fire + "";
     }
 }

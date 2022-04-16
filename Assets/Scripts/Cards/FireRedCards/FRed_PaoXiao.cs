@@ -39,7 +39,7 @@ public class FRed_PaoXiao : FireRedCard
     {
         base.UpdateDes();
         description = "";
-        description += "»ğÑæ" + fire + ";";
-        description += "³õÊ¼£º»ğÑæ+" + fireStart + ";";
+        description += "»ğÑæ" + fire + "\n";
+        description += "³õÊ¼£º»ğÑæ+" + fireStart + "";
     }
 }

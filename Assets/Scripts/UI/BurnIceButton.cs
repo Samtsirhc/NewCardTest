@@ -22,10 +22,10 @@ public class BurnIceButton : MonoBehaviour
 
     private void FixedUpdate() {
         if(isBurn){
-            _text.text = "»ðÑæ£º " + BattleManager.Instance.player.fire;
+            _text.text = "" + BattleManager.Instance.player.fire;
         }
         else{
-            _text.text = "º®±ù£º " + BattleManager.Instance.player.ice;
+            _text.text = "" + BattleManager.Instance.player.ice;
         }
     }
 

@@ -39,8 +39,8 @@ public class FRed_HuoYanChongJi : FireRedCard
         nowFire = GetFire();
         damage = nowFire >= maxFireCost ? maxFireCost : nowFire; 
         description = "";
-        description += "消耗"+ damage + "点火焰,造成" + damage +"伤害\n";
-        description += "至多消耗"+ maxFireCost +"点火焰。";
+        description += "消耗"+ damage + "火焰,造成" + damage +"伤害\n";
+        description += "至多消耗"+ maxFireCost +"火焰。";
     }
 
 

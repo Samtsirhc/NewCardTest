@@ -35,7 +35,7 @@ public class IBlue_BingQiang : IceBlueCard
     {
         base.UpdateDes();
         description = "";
-        description += "»¤¼×" + armor + ";";
-        description += "º®±ù" + ice + "; ";
+        description += "»¤¼×" + armor + "\n";
+        description += "º®±ù" + ice + " ";
     }
 }

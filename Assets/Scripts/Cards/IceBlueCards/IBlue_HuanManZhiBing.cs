@@ -32,7 +32,7 @@ public class IBlue_HuanManZhiBing : IceBlueCard
     {
         base.UpdateDes();
         description = "";
-        description += "失去：获得护甲" + armor + "; ";
+        description += "失去：获得护甲" + armor + "\n ";
     }
     
 }

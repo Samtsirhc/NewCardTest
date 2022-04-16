@@ -34,6 +34,6 @@ public class IBlue_CiGuHanBing : IceBlueCard
     {
         base.UpdateDes();
         description = "";
-        description += "造成"+ damage + "点穿透伤害，并窃取等量护甲";
+        description += "造成"+ damage + "穿透伤害，并窃取等量护甲";
     }
 }

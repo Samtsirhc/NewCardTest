@@ -29,8 +29,10 @@ public class DeckManager : Singleton<DeckManager>
         myCardInFlow = new List<GameObject>();
         for (int i = 0; i < maxFlowLenth; i++)
         {
+            float _x = 210f;
+            float _p = ((((float)maxFlowLenth - 1f) / 2f) - (float)i) * _x;
             GameObject _card_pos = Instantiate(cardPosPfb, GameObject.Find("Canvas").transform);
-            _card_pos.transform.position = new Vector3((-i + 4.5f) * 170f + 960, -400 + 540, 0f);
+            _card_pos.transform.position = new Vector3(_p + 960, -400 + 540, 0f);
             cardPoses.Add(_card_pos);
             _card_pos.GetComponentInChildren<Text>().text = i.ToString();
             myCardInFlow.Add(null);
@@ -178,6 +180,7 @@ public class DeckManager : Singleton<DeckManager>
                 string _s = string.Format("增加了卡牌【{0}】在位置【{1}】", card.GetComponent<MyCard>().cardName, i);
                 TipManager.ShowTip(_s);
                 card.GetComponent<MyCard>().OnGet();
+                SoundManager.Instance.DrawCard();
                 break;
             }
         }
@@ -231,6 +234,7 @@ public class DeckManager : Singleton<DeckManager>
             TipManager.ShowTip("你没有！！！");
             return;
         }
+        SoundManager.Instance.DeleteCard();
         Destroy(myCardInFlow[index]);
         myCardInFlow[index] = null;
         SetCardPosition();

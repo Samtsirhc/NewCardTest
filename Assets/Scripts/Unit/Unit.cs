@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Unit : MonoBehaviour
 {
-    public GameObject ShowUnitStatus;
+    public GameObject showArmor;
     public int maxHp;
     private Animator anim;
     public virtual int hp
@@ -36,24 +36,9 @@ public class Unit : MonoBehaviour
     public virtual int ice { get; set; }
     protected virtual void UpdateUnitStatus()
     {
-        string _s = "";
-        //if (hp > 0)
-        //{
-        //    _s += "ÉúÃü " + hp + "\n";
-        //}
-        if (armor > 0)
-        {
-            _s += "»¤¼× " + armor + "\n";
-        }
-        if (fire > 0)
-        {
-            _s += "»ðÑæ " + fire + "\n";
-        }
-        if (ice > 0)
-        {
-            _s += "º®±ù " + ice + "\n";
-        }
-        ShowUnitStatus.GetComponent<Text>().text = _s;
+        string _s = armor.ToString();
+
+        showArmor.GetComponent<Text>().text = _s;
     }
     protected virtual void Start()
     {
@@ -86,6 +71,7 @@ public class Unit : MonoBehaviour
     {
         Debug.Log(gameObject.name + "takedamage!");
         int _damage = 0;
+        SoundManager.Instance.BeAttacked();
         if (damage >= armor)
         {
             _damage = damage - armor;
