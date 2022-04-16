@@ -5,7 +5,6 @@ using UnityEngine;
 public class EnemyLevel1 : Enemy
 {
     private int actTurn = 1;
-    public Unit player;
     protected override void Start(){
         base.Start();
         nextAct = "¹¥»÷14";
@@ -15,23 +14,23 @@ public class EnemyLevel1 : Enemy
         base.EnemyAct();
         switch(actTurn){
             case 1:
-                player.TakeDamage(14);
+                AttackPlayer(14);
                 nextAct = "»¤¼×8";
                 break;
             case 2:
-                armor += 8;
+                GetArmor(8);
                 nextAct = "¹¥»÷12";
                 break;
             case 3:
-                player.TakeDamage(12);
+                AttackPlayer(12);
                 nextAct = "¹¥»÷16";
                 break;
             case 4:
-                player.TakeDamage(16);
+                AttackPlayer(16);
                 nextAct = "»¤¼×12";
                 break;
             case 5:
-                armor += 12;
+                GetArmor(12);
                 nextAct = "¹¥»÷14";
                 break;
         }

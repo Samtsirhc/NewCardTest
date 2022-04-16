@@ -17,30 +17,28 @@ public class EnemyLevel3 : Enemy
         base.EnemyAct();
         switch(actTurn){
             case 1:
-                player.TakeDamage(24);
+                AttackPlayer(24);
                 nextAct = "偷取你的所有的护盾";
                 break;
             case 2:
-                armor = player.armor;
-                player.armor = 0;
+                StealAllArmor();
                 nextAct = "攻击14";
                 break;
             case 3:
-                player.TakeDamage(14);
+                AttackPlayer(14);
                 nextAct = "攻击25 石化1";
                 break;
             case 4:
-                player.TakeDamage(25);
+                AttackPlayer(25);
                 //石化
                 nextAct = "防御10";
                 break;
             case 5:
-                armor += 10;
+                GetArmor(10);
                 nextAct = "偷取你的所有的护盾";
                 break;
             case 6:
-                armor = player.armor;
-                player.armor = 0;
+                StealAllArmor();
                 nextAct = "攻击20";
                 break;
         }

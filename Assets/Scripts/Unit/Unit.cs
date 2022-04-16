@@ -61,15 +61,15 @@ public class Unit : MonoBehaviour
         anim = GetComponent<Animator>();
         hp = maxHp;
     }
-    private void PlayAttack()
+    protected void PlayAttack()
     {
         anim.Play("Attack");
     }
-    private void PlayHurt()
+    protected void PlayHurt()
     {
         anim.Play("Hurt");
     }
-    private void PlayPower()
+    protected void PlayPower()
     {
         anim.Play("Power");
     }
