@@ -784,6 +784,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShouUnitStatus: {fileID: 1051561056}
+  maxHp: 0
   Hp: 90
   player: {fileID: 418466643}
 --- !u!114 &375943863
@@ -971,6 +972,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 8189c61723055c8499e8b2ec3fddf190, type: 3}
+    - target: {fileID: 6123301503944204498, guid: c25d881be8f39214390758eabaa4d07f, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7358160323028207099, guid: c25d881be8f39214390758eabaa4d07f, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 250
@@ -2671,12 +2676,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 1804772169}
     m_Modifications:
     - target: {fileID: 7091982074015172120, guid: cd60b256bb623fe46aa1f46f33ca180c, type: 3}
+      propertyPath: playTimes
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7091982074015172120, guid: cd60b256bb623fe46aa1f46f33ca180c, type: 3}
       propertyPath: cardPosPfb
       value: 
       objectReference: {fileID: 4263522474063972596, guid: 407f289f735b49e4fa5f3c4bf2172839, type: 3}
     - target: {fileID: 7091982074015172120, guid: cd60b256bb623fe46aa1f46f33ca180c, type: 3}
       propertyPath: maxFlowLenth
-      value: 10
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7091982074015172120, guid: cd60b256bb623fe46aa1f46f33ca180c, type: 3}
       propertyPath: cardPoses.Array.size
@@ -2788,11 +2797,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7091982074015172121, guid: cd60b256bb623fe46aa1f46f33ca180c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -1238.8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7091982074015172121, guid: cd60b256bb623fe46aa1f46f33ca180c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -700
       objectReference: {fileID: 0}
     - target: {fileID: 7091982074015172121, guid: cd60b256bb623fe46aa1f46f33ca180c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

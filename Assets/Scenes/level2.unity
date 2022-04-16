@@ -793,6 +793,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: be1fa5084f01b4541bb1e385ec903528, type: 3}
+    - target: {fileID: 6123301503944204498, guid: c25d881be8f39214390758eabaa4d07f, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7554411796492082202, guid: c25d881be8f39214390758eabaa4d07f, type: 3}
       propertyPath: m_Text
       value: "\u654C\u4EBA"
@@ -828,6 +832,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShouUnitStatus: {fileID: 124394184}
+  maxHp: 0
 --- !u!1 &167150095
 GameObject:
   m_ObjectHideFlags: 0
@@ -872,12 +877,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 1058585678}
     m_Modifications:
     - target: {fileID: 7091982074015172120, guid: cd60b256bb623fe46aa1f46f33ca180c, type: 3}
+      propertyPath: playTimes
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7091982074015172120, guid: cd60b256bb623fe46aa1f46f33ca180c, type: 3}
       propertyPath: cardPosPfb
       value: 
       objectReference: {fileID: 4263522474063972596, guid: 407f289f735b49e4fa5f3c4bf2172839, type: 3}
     - target: {fileID: 7091982074015172120, guid: cd60b256bb623fe46aa1f46f33ca180c, type: 3}
       propertyPath: maxFlowLenth
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7091982074015172120, guid: cd60b256bb623fe46aa1f46f33ca180c, type: 3}
       propertyPath: cardPoses.Array.size
@@ -989,11 +998,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7091982074015172121, guid: cd60b256bb623fe46aa1f46f33ca180c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -1238.8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7091982074015172121, guid: cd60b256bb623fe46aa1f46f33ca180c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -700
       objectReference: {fileID: 0}
     - target: {fileID: 7091982074015172121, guid: cd60b256bb623fe46aa1f46f33ca180c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3099,6 +3108,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 8189c61723055c8499e8b2ec3fddf190, type: 3}
+    - target: {fileID: 6123301503944204498, guid: c25d881be8f39214390758eabaa4d07f, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7358160323028207099, guid: c25d881be8f39214390758eabaa4d07f, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 250
@@ -3661,11 +3674,11 @@ RectTransform:
   m_Children:
   - {fileID: 181329520}
   - {fileID: 1332776887}
+  - {fileID: 1592710416}
   - {fileID: 945736072}
   - {fileID: 312819269}
-  - {fileID: 1592710416}
-  - {fileID: 124394183}
   - {fileID: 1347545460}
+  - {fileID: 124394183}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4382,7 +4395,7 @@ RectTransform:
   m_Children:
   - {fileID: 1616006359}
   m_Father: {fileID: 1058585678}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5320,7 +5333,7 @@ RectTransform:
   - {fileID: 635532885}
   - {fileID: 121400914}
   m_Father: {fileID: 1058585678}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5340,6 +5353,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShouUnitStatus: {fileID: 121400913}
+  maxHp: 0
   Hp: 70
   player: {fileID: 945736070}
 --- !u!114 &1592710418

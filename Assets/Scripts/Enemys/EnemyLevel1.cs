@@ -5,19 +5,10 @@ using UnityEngine;
 public class EnemyLevel1 : Enemy
 {
     private int actTurn = 1;
-<<<<<<< Updated upstream
     public Unit player;
     protected override void Start(){
         base.Start();
-        nextAct = "»¤¼×14";
-=======
-    public int Hp = 40;
-    public Unit player;
-    protected override void Start(){
-        base.Start();
-        hp = Hp;
         nextAct = "¹¥»÷14";
->>>>>>> Stashed changes
     }
     protected override void EnemyAct()
     {
