@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Unit : MonoBehaviour
 {
     public GameObject ShouUnitStatus;
+    public int maxHp;
     virtual public int hp { get; set; }
     virtual public int armor { get; set; }
     virtual public int fire { get; set; }
@@ -13,10 +14,10 @@ public class Unit : MonoBehaviour
     protected virtual void UpdateUnitStatus()
     {
         string _s = "";
-        if (hp > 0)
-        {
-            _s += "ÉúÃü " + hp + "\n";
-        }
+        //if (hp > 0)
+        //{
+        //    _s += "ÉúÃü " + hp + "\n";
+        //}
         if (armor > 0)
         {
             _s += "»¤¼× " + armor + "\n";
@@ -34,6 +35,7 @@ public class Unit : MonoBehaviour
     protected virtual void Start()
     {
         EventCenter.AddListener(E_EventType.END_TURN, OnTurnEnd);
+        hp = maxHp;
     }
     protected virtual void OnDestroy()
     {

@@ -9,7 +9,6 @@ public class Enemy : Unit
     protected override void Start()
     {
         base.Start();
-        hp = 100;
         EventCenter.AddListener(E_EventType.ENEMY_TURN, OnEnemyTurn);
     }
 

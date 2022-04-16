@@ -5,11 +5,9 @@ using UnityEngine;
 public class EnemyLevel1 : Enemy
 {
     private int actTurn = 1;
-    public int Hp = 70;
     public Unit player;
     protected override void Start(){
         base.Start();
-        hp = Hp;
         nextAct = "»¤¼×14";
     }
     protected override void EnemyAct()

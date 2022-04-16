@@ -13,7 +13,7 @@ public class MyCard : MonoBehaviour
     [HideInInspector]
     public virtual CardType cardType { get { return CardType.BASIC; } }
     [HideInInspector]
-    public int position;    // 在牌流里面的位置 0开始，最右侧
+    public int position = -1;    // 在牌流里面的位置 0开始，最右侧
     [HideInInspector]
     public Dictionary<string, int> playInfo;    // 记录一些伤害之类的东西
     [HideInInspector]
@@ -21,6 +21,11 @@ public class MyCard : MonoBehaviour
     public string cardName = "示例卡牌";
     public string originalDescription = "示例卡牌的描述";
     public string tureDescription = "哈哈哈哈哈哈哈哈";
+    public bool inBattle = false;
+
+    bool playing = false;
+    bool played = false;
+    float moveSpeed = 20;
     #endregion
 
     #region 卡牌属性
@@ -73,9 +78,60 @@ public class MyCard : MonoBehaviour
     {
         EventCenter.RemoveListener(E_EventType.END_TURN, OnTurnEnd);
     }
+    private void Update()
+    {
+    }
     protected virtual void FixedUpdate()
     {
         UpdateDes();
+        if (inBattle)
+        {
+            if (playing)
+            {
+                MoveAndEnlarge();
+            }
+            else
+            {
+                SetCardPosition();
+            }
+        }
+    }
+    public void SetCardPosition()
+    {
+        if (position < 0)
+        {
+            return;
+        }
+        Vector3 des = DeckManager.Instance.cardPoses[position].transform.position;
+        Vector3 direction = des - transform.position;
+        if (direction.magnitude <= 3f)
+        {
+            transform.position = des;
+            return;
+        }
+        float _speed = 5 + moveSpeed * direction.magnitude / 500;
+        transform.Translate(direction.normalized * _speed);
+    }
+    private void MoveAndEnlarge()
+    {
+        Vector3 des = new Vector3(1920/2, 1080/2, 0);
+        Vector3 direction = des - transform.position;
+        if (direction.magnitude <= 3f)
+        {
+            if (!played)
+            {
+                GetComponent<Animator>().Play("fade");
+                PreUse();
+                OnUse();
+                AfterUse();
+                EventCenter.Broadcast<MyCard>(E_EventType.CARD_USED, this);
+                played = true;
+            }
+            transform.position = des;
+            return;
+        }
+        float _speed = 5 + moveSpeed * direction.magnitude / 500;
+        transform.Translate(direction.normalized * _speed);
     }
     #endregion
 
@@ -261,10 +317,7 @@ public class MyCard : MonoBehaviour
     }
     public virtual void PlayCard()
     {
-        PreUse();
-        OnUse();
-        AfterUse();
-        EventCenter.Broadcast<MyCard>(E_EventType.CARD_USED, this);
+        playing = true;
     }   // 打出卡牌
 
     public virtual void CloneCard(){

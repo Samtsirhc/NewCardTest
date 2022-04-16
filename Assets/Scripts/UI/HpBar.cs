@@ -8,14 +8,18 @@ public class HpBar : MonoBehaviour
     public GameObject quickBar;
     public float curRate;
     public Text text;
+    public GameObject unitObj;
+    private Unit unit;
     // Start is called before the first frame update
     void Start()
     {
+        unit = unitObj.GetComponent<Unit>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        SetValue(unit.hp, unit.maxHp);
         UpdateValue();
     }
 
@@ -28,6 +32,7 @@ public class HpBar : MonoBehaviour
     public void SetValue(float cur, float max)
     {
         curRate = cur / max;
+        text.text = cur + "/" + max;
     }
 
 }

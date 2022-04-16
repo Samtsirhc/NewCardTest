@@ -24,7 +24,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7091982074015172134}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -48,18 +48,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b4f089bd00df3c41ac9ed0401006afa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardPosPfb: {fileID: 0}
+  cardPosPfb: {fileID: 4263522474063972596, guid: 407f289f735b49e4fa5f3c4bf2172839, type: 3}
   myCardPfbs: []
-  cardPoses:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  cardPoses: []
   myCardInFlow: []
+  maxFlowLenth: 10
+  playTimes: 5
+  PlayCost: 3
+  switchIndex: 1
   descriptionType: 0
+  curIndex: 0
+  indexes: 

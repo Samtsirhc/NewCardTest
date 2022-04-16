@@ -32,7 +32,6 @@ public class Player : Unit
     {
         base.Start();
         canGetFire = true;
-        hp = 100;
     }
 
     protected override void UpdateUnitStatus() {

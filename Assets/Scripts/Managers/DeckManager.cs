@@ -65,14 +65,14 @@ public class DeckManager : Singleton<DeckManager>
     public void SetCardPosition()
     {
         AlignRight();
-        foreach (var item in myCardInFlow)
-        {
-            if (item == null)
-            {
-                continue;
-            }
-            item.transform.position = cardPoses[item.GetComponent<MyCard>().position].transform.position;
-        }
+        //foreach (var item in myCardInFlow)
+        //{
+        //    if (item == null)
+        //    {
+        //        continue;
+        //    }
+        //    item.transform.position = cardPoses[item.GetComponent<MyCard>().position].transform.position;
+        //}
     }
 
     public void AlignRight()
@@ -208,11 +208,16 @@ public class DeckManager : Singleton<DeckManager>
                 cardBuffer.Insert(Random.Range(0, i), CreateNewCardClone(myCardPfbs[i]));
             }
         }
+        foreach (var item in cardBuffer)
+        {
+            item.GetComponent<MyCard>().position = -1;
+            item.GetComponent<MyCard>().inBattle = true;
+        }
     }
     public GameObject CreateNewCardClone(GameObject obj)
     {
         GameObject _obj = Instantiate(obj, GameObject.Find("Canvas").transform);
-        _obj.transform.position = new Vector3(-2000, -2000, 0);
+        _obj.transform.position = transform.position;
         return _obj;
     }
     public void DeleteCard(int index)
@@ -242,15 +247,20 @@ public class DeckManager : Singleton<DeckManager>
     public void CardUsed(MyCard myCard)
     {
         myCardInFlow[myCard.position] = null;
-        Destroy(myCard.gameObject);
+        StartCoroutine(DelayDestroy(myCard.gameObject));
         SetCardPosition();
+        DrawCard();
+    }
+    IEnumerator DelayDestroy(GameObject gameObject)
+    {
+        yield return new WaitForSeconds(3f);
+        Destroy(gameObject);
     }
     public void PlayFirstCard()
     {
         myCardInFlow[0].GetComponent<MyCard>().PlayCard();
-        DrawCard();
+       
     }
-
     public void PlayAllCard()
     {
         StartCoroutine(_PlayAllCard());
@@ -260,8 +270,9 @@ public class DeckManager : Singleton<DeckManager>
         for (int i = 0; i < BattleManager.Instance.playCardTime; i++)
         {
             PlayFirstCard();
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1.5f);
         }
+        yield return new WaitForSeconds(1f);
         BattleManager.Instance.playCardTime = 0;
         EventCenter.Broadcast(E_EventType.ENEMY_TURN);
         yield return 0;
