@@ -2,27 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class BurnIceButton : MonoBehaviour
 {
     public bool isBurn;
     public bool isWork = false;
-    public GameObject arrow;
     private MyCard _other;
     private EventTrigger eventTrigger;
+    private Text _text;
     // Start is called before the first frame update
     void Start()
     {
         eventTrigger = GetComponent<EventTrigger>();
         AddPointerEvent(eventTrigger, EventTriggerType.PointerDown, PointerDown);
         AddPointerEvent(eventTrigger, EventTriggerType.PointerUp, PointerUp);
-        // arrow.SetActive(true);
-        // arrow.GetComponent<MyMouseArrow>().origin.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        _text = transform.GetChild(0).GetComponent<Text>();
     }
 
-    void update()
-    {
-
+    private void FixedUpdate() {
+        if(isBurn){
+            _text.text = "»ðÑæ£º " + BattleManager.Instance.player.fire;
+        }
+        else{
+            _text.text = "º®±ù£º " + BattleManager.Instance.player.ice;
+        }
     }
 
     private void AddPointerEvent(EventTrigger eventTrigger, EventTriggerType eventTriggerType, UnityEngine.Events.UnityAction<BaseEventData> callback)
@@ -36,8 +40,7 @@ public class BurnIceButton : MonoBehaviour
 
     void PointerDown(BaseEventData arg0)
     {
-        arrow.SetActive(true);
-        arrow.GetComponent<MyMouseArrow>().origin.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        EventCenter.Broadcast(E_EventType.SHOW_ARROW);
         isWork = true;
     }
 

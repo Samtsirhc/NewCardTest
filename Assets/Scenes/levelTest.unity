@@ -728,6 +728,7 @@ GameObject:
   - component: {fileID: 292843483}
   - component: {fileID: 292843482}
   - component: {fileID: 292843481}
+  - component: {fileID: 292843484}
   m_Layer: 5
   m_Name: Enemy
   m_TagString: Untagged
@@ -769,10 +770,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e40fe05de632b47489aac6d219a7d8ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShouUnitStatus: {fileID: 1427294873}
-  maxHp: 0
-  Hp: 70
-  player: {fileID: 1934096714}
+  ShowUnitStatus: {fileID: 0}
+  maxHp: 70
 --- !u!114 &292843482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -811,6 +810,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 292843479}
   m_CullTransparentMesh: 1
+--- !u!95 &292843484
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 292843479}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e4afa9808be952743b84639f405c701b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &293982445
 GameObject:
   m_ObjectHideFlags: 0
@@ -2352,6 +2370,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1092332003}
     m_Modifications:
+    - target: {fileID: 391933717, guid: c25d881be8f39214390758eabaa4d07f, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1874228434055202091, guid: c25d881be8f39214390758eabaa4d07f, type: 3}
       propertyPath: unit
       value: 
@@ -2466,7 +2488,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: be1fa5084f01b4541bb1e385ec903528, type: 3}
     - target: {fileID: 6123301503944204498, guid: c25d881be8f39214390758eabaa4d07f, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7554411796492082202, guid: c25d881be8f39214390758eabaa4d07f, type: 3}
       propertyPath: m_Text
@@ -2478,11 +2500,6 @@ PrefabInstance:
 --- !u!224 &843559569 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3992959722180924228, guid: c25d881be8f39214390758eabaa4d07f, type: 3}
-  m_PrefabInstance: {fileID: 843559568}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &843559570 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1874228434535501120, guid: c25d881be8f39214390758eabaa4d07f, type: 3}
   m_PrefabInstance: {fileID: 843559568}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &843559571 stripped
@@ -2502,7 +2519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad0c13f73cd1a7d4998808afda3d23df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShouUnitStatus: {fileID: 843559570}
+  ShowUnitStatus: {fileID: 0}
   maxHp: 0
 --- !u!1 &855935318
 GameObject:
@@ -5314,6 +5331,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1092332003}
     m_Modifications:
+    - target: {fileID: 391933717, guid: c25d881be8f39214390758eabaa4d07f, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1874228434055202092, guid: c25d881be8f39214390758eabaa4d07f, type: 3}
       propertyPath: m_Name
       value: "\u4FEE\u6539"
@@ -5472,7 +5493,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6123301503944204498, guid: c25d881be8f39214390758eabaa4d07f, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7358160323028207099, guid: c25d881be8f39214390758eabaa4d07f, type: 3}
       propertyPath: m_AnchoredPosition.y

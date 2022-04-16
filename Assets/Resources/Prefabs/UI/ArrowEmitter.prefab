@@ -50,5 +50,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrowHeadPfb: {fileID: 2426963706738760714, guid: eed454ff8898fb647a2a63e85c0fa921, type: 3}
   arrowNodPfb: {fileID: 211002480261771551, guid: e49a04ceb8f5bc64faf5bbda172c4659, type: 3}
-  arrowNodNumber: 0
+  arrowNodNumber: 20
   scaleFactor: 1
+  origin: {fileID: 0}
