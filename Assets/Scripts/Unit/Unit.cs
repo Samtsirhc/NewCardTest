@@ -5,12 +5,35 @@ using UnityEngine.UI;
 
 public class Unit : MonoBehaviour
 {
-    public GameObject ShouUnitStatus;
+    public GameObject ShowUnitStatus;
     public int maxHp;
-    virtual public int hp { get; set; }
-    virtual public int armor { get; set; }
-    virtual public int fire { get; set; }
-    virtual public int ice { get; set; }
+    private Animator anim;
+    public virtual int hp
+    {
+        get { return _hp; }
+        set
+        {
+            if (_hp > value)
+            {
+                PlayHurt();
+            }
+            _hp = value;
+        }
+    }
+    private int _hp;
+    public virtual int armor { get { return _armor; }
+        set 
+        {
+            if (value > _armor)
+            {
+                PlayPower();
+            }
+            _armor = value;
+        }
+    }
+    private int _armor;
+    public virtual int fire { get; set; }
+    public virtual int ice { get; set; }
     protected virtual void UpdateUnitStatus()
     {
         string _s = "";
@@ -30,12 +53,25 @@ public class Unit : MonoBehaviour
         {
             _s += "º®±ù " + ice + "\n";
         }
-        ShouUnitStatus.GetComponent<Text>().text = _s;
+        ShowUnitStatus.GetComponent<Text>().text = _s;
     }
     protected virtual void Start()
     {
         EventCenter.AddListener(E_EventType.END_TURN, OnTurnEnd);
+        anim = GetComponent<Animator>();
         hp = maxHp;
+    }
+    private void PlayAttack()
+    {
+        anim.Play("Attack");
+    }
+    private void PlayHurt()
+    {
+        anim.Play("Hurt");
+    }
+    private void PlayPower()
+    {
+        anim.Play("Power");
     }
     protected virtual void OnDestroy()
     {

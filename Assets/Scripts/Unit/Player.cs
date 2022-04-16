@@ -37,7 +37,7 @@ public class Player : Unit
 
     protected override void UpdateUnitStatus() {
         base.UpdateUnitStatus();
-        ShouUnitStatus.GetComponent<Text>().text += "费用 " + BattleManager.Instance.playCost + "\n";
+        ShowUnitStatus.GetComponent<Text>().text += "费用 " + BattleManager.Instance.playCost + "\n";
     }
 
     public override void OnTurnEnd(){
