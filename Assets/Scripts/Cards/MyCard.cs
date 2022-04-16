@@ -102,7 +102,7 @@ public class MyCard : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.W))
         {
-            DeckManager.Instance.AddCard(Instantiate(gameObject, GameObject.Find("Canvas").transform));
+            CloneCard();
         }
         else if (Input.GetKey(KeyCode.D))
         {
@@ -266,6 +266,14 @@ public class MyCard : MonoBehaviour
         AfterUse();
         EventCenter.Broadcast<MyCard>(E_EventType.CARD_USED, this);
     }   // ´ò³ö¿¨ÅÆ
+
+    public virtual void CloneCard(){
+        if(!BattleManager.Instance.isCostEnough(2)){
+            return;
+        }
+        DeckManager.Instance.AddCard(Instantiate(gameObject, GameObject.Find("Canvas").transform));
+        BattleManager.Instance.Cost(2);
+    }
     public virtual void TriggerCard()
     {
         PreUse();

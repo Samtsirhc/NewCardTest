@@ -12,16 +12,19 @@ public class DeckManager : Singleton<DeckManager>
     private List<GameObject> cardBuffer;
     public int maxFlowLenth = 5;
     public int playTimes = 5;
-
+    public int PlayCost = 3;
+    public int switchIndex = 1;
     public bool descriptionType;
     // Start is called before the first frame update
     void Start()
     {
         cardBuffer = new List<GameObject>();
         EventCenter.AddListener(E_EventType.DRAW_CARD, DrawCard);
+        EventCenter.AddListener(E_EventType.DRAW_ALL_CARD, DrawAllCard);
         EventCenter.AddListener<int>(E_EventType.DELETE_CARD, DeleteCard);
         EventCenter.AddListener<int, int>(E_EventType.SWITCH_CARD, SwitchCard);
         EventCenter.AddListener<MyCard>(E_EventType.CARD_USED, CardUsed);
+
         InitMyCardPfb();
         myCardInFlow = new List<GameObject>();
         for (int i = 0; i < maxFlowLenth; i++)
@@ -32,6 +35,8 @@ public class DeckManager : Singleton<DeckManager>
             _card_pos.GetComponentInChildren<Text>().text = i.ToString();
             myCardInFlow.Add(null);
         }
+        
+        Invoke("DrawAllCard",0.1f);
     }
 
     private void InitMyCardPfb()
@@ -45,6 +50,7 @@ public class DeckManager : Singleton<DeckManager>
     private void OnDestroy()
     {
         EventCenter.RemoveListener(E_EventType.DRAW_CARD, DrawCard);
+        EventCenter.RemoveListener(E_EventType.DRAW_ALL_CARD, DrawAllCard);
         EventCenter.RemoveListener<int>(E_EventType.DELETE_CARD, DeleteCard);
         EventCenter.RemoveListener<MyCard>(E_EventType.CARD_USED, CardUsed);
         EventCenter.RemoveListener<int, int>(E_EventType.SWITCH_CARD, SwitchCard);
@@ -75,7 +81,7 @@ public class DeckManager : Singleton<DeckManager>
         for (int i = myCardInFlow.Count; i < maxFlowLenth; i++)
         {
             myCardInFlow.Add(null);
-            
+
         }
         for (int i = 0; i < maxFlowLenth; i++)
         {
@@ -87,8 +93,25 @@ public class DeckManager : Singleton<DeckManager>
         }
     }
     #endregion
+
+
     public void SwitchCard(int _index1, int _index2)
     {
+        if (!BattleManager.Instance.isCostEnough(1))
+        {
+            return;
+        }
+
+        if (_index1 == _index2)
+        {
+            return;
+        }
+        else if (Mathf.Abs(_index1 - _index2) > switchIndex)
+        {
+            Debug.Log("交换失败，仅能交换相邻的卡牌。");
+            return;
+        }
+
         if (myCardInFlow[_index1] == null || myCardInFlow[_index2] == null)
         {
             return;
@@ -99,6 +122,7 @@ public class DeckManager : Singleton<DeckManager>
         myCardInFlow[_index1].GetComponent<MyCard>().position = _index2;
         myCardInFlow[_index2].GetComponent<MyCard>().position = _index1;
         SetCardPosition();
+        BattleManager.Instance.Cost(1);
     }
     public int curIndex = 0;
     public List<int> indexes;
@@ -116,7 +140,15 @@ public class DeckManager : Singleton<DeckManager>
         if (curIndex >= myCardPfbs.Count)
         {
             curIndex = 0;
-        }  
+        }
+    }
+
+    public void DrawAllCard()
+    {
+        while (!IsFlowFull())
+        {
+            DrawCard();
+        }
     }
     public bool IsFlowFull()
     {
@@ -185,6 +217,10 @@ public class DeckManager : Singleton<DeckManager>
     }
     public void DeleteCard(int index)
     {
+        if (!BattleManager.Instance.isCostEnough(2))
+        {
+            return;
+        }
         if (myCardInFlow.Count <= 0)
         {
             TipManager.ShowTip("你没有！！！");
@@ -193,6 +229,8 @@ public class DeckManager : Singleton<DeckManager>
         Destroy(myCardInFlow[index]);
         myCardInFlow[index] = null;
         SetCardPosition();
+        DrawCard();
+        BattleManager.Instance.Cost(2);
     }
     public void SwitchDescriptionType()
     {
@@ -210,6 +248,22 @@ public class DeckManager : Singleton<DeckManager>
     public void PlayFirstCard()
     {
         myCardInFlow[0].GetComponent<MyCard>().PlayCard();
+        DrawCard();
     }
 
+    public void PlayAllCard()
+    {
+        StartCoroutine(_PlayAllCard());
+    }
+    IEnumerator _PlayAllCard()
+    {
+        for (int i = 0; i < BattleManager.Instance.playCardTime; i++)
+        {
+            PlayFirstCard();
+            yield return new WaitForSeconds(0.5f);
+        }
+        BattleManager.Instance.playCardTime = 0;
+        EventCenter.Broadcast(E_EventType.ENEMY_TURN);
+        yield return 0;
+    }
 }

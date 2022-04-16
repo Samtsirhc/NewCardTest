@@ -10,8 +10,7 @@ public class Unit : MonoBehaviour
     virtual public int armor { get; set; }
     virtual public int fire { get; set; }
     virtual public int ice { get; set; }
-
-    private void UpdateUnitStatus()
+    protected virtual void UpdateUnitStatus()
     {
         string _s = "";
         if (hp > 0)
@@ -47,6 +46,7 @@ public class Unit : MonoBehaviour
     }
     public int TakeDamage(int damage)
     {
+        Debug.Log(gameObject.name + "takedamage!");
         int _damage = 0;
         if (damage >= armor)
         {
@@ -74,7 +74,7 @@ public class Unit : MonoBehaviour
 
     public virtual void OnTurnEnd()
     {
-        armor = 0;
+
     }
 
     public virtual void OnTurnStart()

@@ -11,6 +11,9 @@ public enum E_EventType
         PLAY_ONE_CARD = 10004,
         PLAY_ONE_CARD_IN_TURN = 10005,
         SWITCH_CARD = 10006,
+        DRAW_ALL_CARD = 10007,
+        PLAY_ALL_CARD = 10008,
+
 
         // 设置属性
         SET_HP = 20000,
@@ -21,12 +24,12 @@ public enum E_EventType
 
         // 回合相关
         END_TURN = 30000,
+        START_TURN = 30001,
+        ENEMY_TURN = 30002,
 
         // UI相关
         SHOW_ARROW = 40000,
         UI_POINTER_ENTER = 40001,
         UI_POINTER_OUT = 40002,
-
-
 
 }

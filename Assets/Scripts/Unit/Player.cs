@@ -27,12 +27,20 @@ public class Player : Unit
     [HideInInspector]
     public bool canGetFire = true;
     private int _fire = 0;
+
     protected override void Start()
     {
         base.Start();
         canGetFire = true;
         hp = 100;
     }
-    // Update is called once per frame
 
+    protected override void UpdateUnitStatus() {
+        base.UpdateUnitStatus();
+        ShouUnitStatus.GetComponent<Text>().text += "∑—”√ " + BattleManager.Instance.playCost + "\n";
+    }
+
+    public override void OnTurnEnd(){
+        armor = 0;
+    }
 }
