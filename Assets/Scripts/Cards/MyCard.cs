@@ -114,7 +114,7 @@ public class MyCard : MonoBehaviour
     }
     private void MoveAndEnlarge()
     {
-        Vector3 des = new Vector3(1920/2, 1080/2, 0);
+        Vector3 des = new Vector3(1920 / 2, 1080 / 2, 0);
         Vector3 direction = des - transform.position;
         if (direction.magnitude <= 3f)
         {
@@ -249,6 +249,7 @@ public class MyCard : MonoBehaviour
         {
             EventCenter.Broadcast(E_EventType.SHOW_ARROW);
         }
+        
     }
     private void PointerExit(BaseEventData arg0)
     {
@@ -326,6 +327,42 @@ public class MyCard : MonoBehaviour
     #endregion
 
     #region 战斗相关的状态事件
+    public void BurnButton()
+    {
+        if (!burn && GetFire() >= 10)
+        {
+            if (icebound)
+            {
+                icebound = false;
+                AddIce(10);
+            }
+            BurnCard();
+            return;
+        }
+        else if (burn)
+        {
+            burn = false;
+            AddFire(10);
+        }
+    }
+    public void IceButton()
+    {
+        if (!icebound && GetIce() >= 10)
+        {
+            if (burn)
+            {
+                burn = false;
+                AddFire(10);
+            }
+            IceboundCard();
+            return;
+        }
+        else if (icebound)
+        {
+            icebound = false;
+            AddIce(10);
+        }
+    }
     protected virtual void BurnCard()
     {
         burn = true;
