@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Enemy : Unit
 {
     virtual public string nextAct { get; set; }
+    
     protected override void Start()
     {
         base.Start();
@@ -32,6 +33,8 @@ public class Enemy : Unit
 
     protected virtual void EnemyAct()
     {
-        //Debug.Log("EnemyAct");
+        if(hp<=0){
+            GameObject.Find("Canvas").transform.Find("NextLevel").gameObject.SetActive(true);
+        }
     }
 }

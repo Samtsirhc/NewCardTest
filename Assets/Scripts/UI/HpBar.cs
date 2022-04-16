@@ -35,4 +35,4 @@ public class HpBar : MonoBehaviour
         text.text = cur + "/" + max;
     }
 
-}
+}  

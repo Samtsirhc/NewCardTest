@@ -32,6 +32,10 @@ public class Player : Unit
     {
         base.Start();
         canGetFire = true;
+<<<<<<< Updated upstream
+=======
+        hp = LevelManager.Instance.playerHp;
+>>>>>>> Stashed changes
     }
 
     protected override void UpdateUnitStatus() {

@@ -35,8 +35,8 @@ public class DeckManager : Singleton<DeckManager>
             _card_pos.GetComponentInChildren<Text>().text = i.ToString();
             myCardInFlow.Add(null);
         }
-        
-        Invoke("DrawAllCard",0.1f);
+        switchIndex = LevelManager.Instance.switchIndex;
+        Invoke("DrawAllCard",2f);
     }
 
     private void InitMyCardPfb()

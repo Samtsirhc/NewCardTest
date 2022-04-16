@@ -39,11 +39,11 @@ public class MyCard : MonoBehaviour
         get { return _burn; }
         set
         {
-            _burn = value; 
+            _burn = value;
             if (value)
             {
                 OnCardBurn();
-            } 
+            }
         }
     }
     private bool _burn = false;
@@ -152,10 +152,10 @@ public class MyCard : MonoBehaviour
     }
     protected virtual void PointerClick(BaseEventData arg0)
     {
-        if (Input.GetKey(KeyCode.A))
-        {
-            PlayCard();
-        }
+        // if (Input.GetKey(KeyCode.A))
+        // {
+        //     PlayCard();
+        // }
         if (Input.GetKey(KeyCode.W))
         {
             CloneCard();
@@ -164,40 +164,76 @@ public class MyCard : MonoBehaviour
         {
             DeleteSelf();
         }
-        else if (Input.GetKey(KeyCode.E))
-        {
-            if (cardLevel >= maxLevel)
-            {
-                cardLevel = 1;
-            }
-            else
-            {
-                cardLevel += 1;
-            }
-        }
+        // else if (Input.GetKey(KeyCode.E))
+        // {
+        //     if (cardLevel >= maxLevel)
+        //     {
+        //         cardLevel = 1;
+        //     }
+        //     else
+        //     {
+        //         cardLevel += 1;
+        //     }
+        // }
         else if (Input.GetKey(KeyCode.R))
         {
-            if (!burn && !icebound)
+            if (!burn && GetFire() >= 10)
             {
+                if (icebound)
+                {
+                    icebound = false;
+                    AddIce(10);
+                }
                 BurnCard();
                 return;
             }
-            else if (burn && !icebound)
-            {
-                IceboundCard();
-                AddFire(10);
-                return;
-            }
-            else if (burn || icebound)
+            else if (burn)
             {
                 burn = false;
-                icebound = false;
-                string _s = string.Format("【{0}】恢复正常", cardName);
-                TipManager.ShowTip(_s);
-                AddIce(10);
-                return;
+                AddFire(10);
             }
         }
+        else if (Input.GetKey(KeyCode.E))
+        {
+            if (!icebound && GetIce() >= 10)
+            {
+                if (burn)
+                {
+                    burn = false;
+                    AddFire(10);
+                }
+                IceboundCard();
+                return;
+            }
+            else if (icebound)
+            {
+                icebound = false;
+                AddIce(10);
+            }
+        }
+        // else if (Input.GetKey(KeyCode.R))
+        // {
+        //     if (!burn && !icebound)
+        //     {
+        //         BurnCard();
+        //         return;
+        //     }
+        //     else if (burn && !icebound)
+        //     {
+        //         IceboundCard();
+        //         AddFire(10);
+        //         return;
+        //     }
+        //     else if (burn || icebound)
+        //     {
+        //         burn = false;
+        //         icebound = false;
+        //         string _s = string.Format("【{0}】恢复正常", cardName);
+        //         TipManager.ShowTip(_s);
+        //         AddIce(10);
+        //         return;
+        //     }
+        // }
     }
     private void PointerUp(BaseEventData arg0)
     {
@@ -250,9 +286,10 @@ public class MyCard : MonoBehaviour
         }
         playInfo["伤害"] += _damage;
         return _damage;
-    } 
+    }
 
-    public virtual int CastPiercingDamage(int num){
+    public virtual int CastPiercingDamage(int num)
+    {
         if (burn)
         {
             num *= burnFactor;
@@ -273,7 +310,7 @@ public class MyCard : MonoBehaviour
     {
         return BattleManager.Instance.player.TakeDamage(num);
     }
-    
+
     /// <summary>
     /// add armor
     /// </summary>
@@ -320,8 +357,10 @@ public class MyCard : MonoBehaviour
         playing = true;
     }   // 打出卡牌
 
-    public virtual void CloneCard(){
-        if(!BattleManager.Instance.isCostEnough(2)){
+    public virtual void CloneCard()
+    {
+        if (!BattleManager.Instance.isCostEnough(2))
+        {
             return;
         }
         DeckManager.Instance.AddCard(Instantiate(gameObject, GameObject.Find("Canvas").transform));
@@ -348,7 +387,7 @@ public class MyCard : MonoBehaviour
     }
     public virtual void OnGet()
     {
-        
+
     }
     public virtual void DeleteSelf()
     {

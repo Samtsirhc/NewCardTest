@@ -2,22 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyLevel1 : Enemy
+public class EnemyLevel2 : Enemy
 {
+
     private int actTurn = 1;
-<<<<<<< Updated upstream
-    public Unit player;
-    protected override void Start(){
-        base.Start();
-        nextAct = "»¤¼×14";
-=======
-    public int Hp = 40;
+    public int Hp = 70;
     public Unit player;
     protected override void Start(){
         base.Start();
         hp = Hp;
         nextAct = "¹¥»÷14";
->>>>>>> Stashed changes
     }
     protected override void EnemyAct()
     {
@@ -25,27 +19,27 @@ public class EnemyLevel1 : Enemy
         switch(actTurn){
             case 1:
                 player.TakeDamage(14);
-                nextAct = "»¤¼×8";
+                nextAct = "¹¥»÷12 Ê¯»¯1";
                 break;
             case 2:
-                armor += 8;
-                nextAct = "¹¥»÷12";
+                player.TakeDamage(12);
+                //Ê¯»¯
+                nextAct = "·ÀÓù8";
                 break;
             case 3:
-                player.TakeDamage(12);
-                nextAct = "¹¥»÷16";
+                armor += 8;
+                nextAct = "¹¥»÷18 ";
                 break;
             case 4:
-                player.TakeDamage(16);
-                nextAct = "»¤¼×12";
+                player.TakeDamage(18);
+                nextAct = "¹¥»÷20 Ê¯»¯1";
                 break;
             case 5:
-                armor += 12;
+                player.TakeDamage(20);
+                //Ê¯»¯
                 nextAct = "¹¥»÷14";
                 break;
         }
         actTurn = actTurn % 5 + 1;
     }
-
-    
 }
