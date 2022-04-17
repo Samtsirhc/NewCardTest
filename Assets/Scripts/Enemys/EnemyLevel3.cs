@@ -17,7 +17,7 @@ public class EnemyLevel3 : Enemy
         switch(actTurn){
             case 1:
                 AttackPlayer(24);
-                nextAct = "偷取你的所有的护盾";
+                nextAct = "偷取你所有的护盾";
                 break;
             case 2:
                 StealAllArmor();
@@ -29,12 +29,12 @@ public class EnemyLevel3 : Enemy
                 break;
             case 4:
                 AttackPlayer(25);
-                //石化
+                StoneCard(0);
                 nextAct = "防御10";
                 break;
             case 5:
                 GetArmor(10);
-                nextAct = "偷取你的所有的护盾";
+                nextAct = "偷取你所有的护盾";
                 break;
             case 6:
                 StealAllArmor();
