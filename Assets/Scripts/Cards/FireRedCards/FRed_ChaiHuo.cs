@@ -25,6 +25,7 @@ public class FRed_ChaiHuo : FireRedCard
     {
         if (GetFire() <= 10)
         {
+            BattleManager.Instance.playCost += 2;
             DeleteSelf();
         }
         base.OnGet();
