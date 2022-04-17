@@ -26,8 +26,18 @@ public class IBlue_CiGuHanBing : IceBlueCard
     public override void OnUse()
     {
         base.OnUse();
-        CastPiercingDamage(damage);
-        GetArmor(burn ? damage * burnFactor :damage);
+        int _d = CastPiercingDamage(damage);
+        Unit _enemy = BattleManager.Instance.enemy;
+        if (_enemy.armor >= _d)
+        {
+            _enemy.armor -= _d;
+            GetArmor(_d);
+        }
+        else
+        {
+            GetArmor(_enemy.armor);
+            _enemy.armor -= 0;
+        }
     }
 
     protected override void UpdateDes()

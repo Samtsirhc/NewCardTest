@@ -28,6 +28,7 @@ public class FRed_YiCiXingHuoYan : FireRedCard
     {
         if (showed)
         {
+            BattleManager.Instance.playCost += 2;
             DeleteSelf();
         }
         showed = true;

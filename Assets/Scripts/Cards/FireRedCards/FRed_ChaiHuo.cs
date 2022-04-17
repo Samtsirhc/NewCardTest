@@ -19,6 +19,7 @@ public class FRed_ChaiHuo : FireRedCard
             _right.burn = true;
             _right.freezed = false;
         }
+        BattleManager.Instance.playCost += 2;
         DeleteSelf();
     }
     public override void OnGet()
