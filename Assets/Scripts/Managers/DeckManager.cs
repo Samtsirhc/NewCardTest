@@ -67,6 +67,7 @@ public class DeckManager : Singleton<DeckManager>
         EventCenter.RemoveListener<int>(E_EventType.DELETE_CARD, DeleteCard);
         EventCenter.RemoveListener<MyCard>(E_EventType.CARD_USED, CardUsed);
         EventCenter.RemoveListener<int, int>(E_EventType.SWITCH_CARD, SwitchCard);
+        EventCenter.RemoveListener(E_EventType.SHOW_CARDS, ShowCards);
     }
     // Update is called once per frame
     void Update()
