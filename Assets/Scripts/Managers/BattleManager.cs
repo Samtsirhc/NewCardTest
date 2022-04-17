@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class BattleManager : Singleton<BattleManager>
 {
-    public GameObject playerObj;
-    public GameObject enemyObj;
+    public GameObject playerObj { get { return GameObject.Find("Player"); } }
+    public GameObject enemyObj { get { return GameObject.Find("Enemy"); } }
     [HideInInspector]
-    public Unit player;
+    public Unit player { get { return playerObj.GetComponent<Unit>(); } }
     [HideInInspector]
-    public Unit enemy;
+    public Unit enemy { get { return enemyObj.GetComponent<Unit>(); } }
     public CardType comboColor;
     public int comboCount = 0;
     public int playCardTime;
@@ -27,8 +27,6 @@ public class BattleManager : Singleton<BattleManager>
         EventCenter.AddListener(E_EventType.PLAY_ONE_CARD_IN_TURN, PlayCardInTurn);
         EventCenter.AddListener(E_EventType.PLAY_ALL_CARD, PlayAllCard);
         EventCenter.AddListener(E_EventType.END_TURN, OnTurnEnd);
-        playCardTime = maxPlayerCardTime;
-        playCost = maxPlayerCost;
     }
 
     private void OnDestroy()
@@ -40,8 +38,9 @@ public class BattleManager : Singleton<BattleManager>
     }
     void Start()
     {
-        player = playerObj.GetComponent<Unit>();
-        enemy = enemyObj.GetComponent<Unit>();
+        DontDestroyOnLoad(gameObject);
+        playCardTime = maxPlayerCardTime;
+        playCost = maxPlayerCost;
     }
 
     // Update is called once per frame

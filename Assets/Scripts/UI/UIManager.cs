@@ -9,10 +9,14 @@ public class UIManager : Singleton<UIManager>
     public GameObject gameTipPfb;
     private GameObject gameTipObj;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        Screen.SetResolution(1920, 1080, true);
+    }
     // Start is called before the first frame update
     void Start()
     {
-        Screen.SetResolution(1920, 1080, true);
         DontDestroyOnLoad(gameObject);
         EventCenter.AddListener<string>(E_EventType.SHOW_GAME_TIP, ShowGameTip);
         EventCenter.AddListener(E_EventType.HIDE_GAME_TIP, HideGameTip);

@@ -6,7 +6,6 @@ public class EnemyLevel3 : Enemy
 {
     private int actTurn = 1;
     public int Hp = 90;
-    public Unit player;
     protected override void Start(){
         base.Start();
         hp = Hp;
