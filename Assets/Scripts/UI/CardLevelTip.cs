@@ -17,6 +17,6 @@ public class CardLevelTip : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
-        text.text = myCard.cardLevel.ToString();
+        text.text = "Lv." + myCard.cardLevel.ToString();
     }
 }
