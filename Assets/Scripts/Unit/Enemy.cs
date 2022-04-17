@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Enemy : Unit
 {
+    public GameObject ShowUnitStatus;
     virtual public string nextAct { get; set; }
     public Unit player { get { return BattleManager.Instance.player; } }
 
@@ -23,7 +24,7 @@ public class Enemy : Unit
 
     protected override void UpdateUnitStatus() {
         base.UpdateUnitStatus();
-        //ShowUnitStatus.GetComponent<Text>().text += "ÏÂ»ØºÏ£º " + nextAct + "\n"; //TODO
+        ShowUnitStatus.GetComponent<Text>().text = "" + nextAct + ""; //TODO
     }
     protected virtual void OnEnemyTurn()
     {

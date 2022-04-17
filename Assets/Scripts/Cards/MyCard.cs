@@ -80,6 +80,7 @@ public class MyCard : MonoBehaviour
     protected virtual void OnDestroy()
     {
         EventCenter.RemoveListener(E_EventType.END_TURN, OnTurnEnd);
+        OnDelete();
     }
     private void Update()
     {
@@ -246,7 +247,7 @@ public class MyCard : MonoBehaviour
     private void PointerUp(BaseEventData arg0)
     {
         MyCard _other;
-        if (UIManager.Instance.ObjBePointed.TryGetComponent(out _other))
+        if (UIManager.Instance.objBePointed.TryGetComponent(out _other))
         {
             DeckManager.Instance.SwitchCard(_other.position, position);
         }
@@ -261,11 +262,11 @@ public class MyCard : MonoBehaviour
     }
     private void PointerExit(BaseEventData arg0)
     {
-        UIManager.Instance.ObjBePointed = null;
+        UIManager.Instance.objBePointed = null;
     }
     private void PointerEnter(BaseEventData arg0)
     {
-        UIManager.Instance.ObjBePointed = gameObject;
+        UIManager.Instance.objBePointed = gameObject;
     }
     private void AddPointerEvent(EventTrigger eventTrigger, EventTriggerType eventTriggerType, UnityEngine.Events.UnityAction<BaseEventData> callback)
     {
@@ -458,7 +459,6 @@ public class MyCard : MonoBehaviour
     }
     public virtual void DeleteSelf()
     {
-        OnDelete();
         EventCenter.Broadcast(E_EventType.DELETE_CARD, position);
     }
     public virtual void OnDelete()

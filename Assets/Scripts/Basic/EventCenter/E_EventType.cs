@@ -4,34 +4,36 @@ public enum E_EventType
     TEST_TYPE = 1,
 
     // 抽牌打牌相关
-        DRAW_CARD = 10000,
-        DELETE_CARD = 10001,
-        NEW_TURN_START = 10002,
-        CARD_USED = 10003,
-        PLAY_ONE_CARD = 10004,
-        PLAY_ONE_CARD_IN_TURN = 10005,
-        SWITCH_CARD = 10006,
-        DRAW_ALL_CARD = 10007,
-        PLAY_ALL_CARD = 10008,
+    DRAW_CARD = 10000,
+    DELETE_CARD = 10001,
+    NEW_TURN_START = 10002,
+    CARD_USED = 10003,
+    PLAY_ONE_CARD = 10004,
+    PLAY_ONE_CARD_IN_TURN = 10005,
+    SWITCH_CARD = 10006,
+    DRAW_ALL_CARD = 10007,
+    PLAY_ALL_CARD = 10008,
 
 
-        // 设置属性
-        SET_HP = 20000,
-        SET_ARMOR = 20001,
-        SET_ANGER = 20002,
-        SET_CALM = 20003,
+    // 设置属性
+    SET_HP = 20000,
+    SET_ARMOR = 20001,
+    SET_ANGER = 20002,
+    SET_CALM = 20003,
 
 
-        // 回合相关
-        END_TURN = 30000,
-        START_TURN = 30001,
-        ENEMY_TURN = 30002,
+    // 回合相关
+    END_TURN = 30000,
+    START_TURN = 30001,
+    ENEMY_TURN = 30002,
 
-        // UI相关
-        SHOW_ARROW = 40000,
-        UI_POINTER_ENTER = 40001,
-        UI_POINTER_OUT = 40002,
-        SHOW_CARDS = 40003,
-        HIDE_CARDS = 40004,
+    // UI相关
+    SHOW_ARROW = 40000,
+    UI_POINTER_ENTER = 40001,
+    UI_POINTER_OUT = 40002,
+    SHOW_CARDS = 40003,
+    HIDE_CARDS = 40004,
+    SHOW_GAME_TIP = 40005,
+    HIDE_GAME_TIP = 40006,
 
 }

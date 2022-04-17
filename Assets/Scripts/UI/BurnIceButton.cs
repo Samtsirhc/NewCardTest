@@ -49,7 +49,7 @@ public class BurnIceButton : MonoBehaviour
         MyCard _other;
         if (isWork)
         {
-            if (UIManager.Instance.ObjBePointed.TryGetComponent(out _other))
+            if (UIManager.Instance.objBePointed.TryGetComponent(out _other))
             {
                 if (isBurn) { _other.BurnButton(); }
                 else { _other.IceButton(); }

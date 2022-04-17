@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+[RequireComponent(typeof(EventTrigger))]
 public class ShowTip : MonoBehaviour
 {
-    public string Tip;
-    public GameObject tipPfb;
-    public Vector3 offset;
+    public string tip = "";
     private EventTrigger eventTrigger;
-    private GameObject obj;
+    private void Start()
+    {
+        InitTriggers();
+    }
     private void InitTriggers()
     {
         eventTrigger = GetComponent<EventTrigger>();
@@ -20,12 +22,11 @@ public class ShowTip : MonoBehaviour
 
     private void PointerExit(BaseEventData arg0)
     {
-        Destroy(obj);
+        EventCenter.Broadcast(E_EventType.HIDE_GAME_TIP);
     }
     private void PointerEnter(BaseEventData arg0)
     {
-        obj = Instantiate(tipPfb, transform);
-        obj.transform.Translate(offset);
+        EventCenter.Broadcast(E_EventType.SHOW_GAME_TIP, tip);
     }
     private void AddPointerEvent(EventTrigger eventTrigger, EventTriggerType eventTriggerType, UnityEngine.Events.UnityAction<BaseEventData> callback)
     {
