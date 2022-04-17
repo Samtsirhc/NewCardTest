@@ -8,6 +8,6 @@ public class ShowEnergy : MonoBehaviour
     // Start is called before the first frame update
     private void FixedUpdate()
     {
-        GetComponent<Text>().text = BattleManager.Instance.playCost.ToString();
+        GetComponent<Text>().text = "¼¼ÄÜµã£º" + BattleManager.Instance.playCost.ToString();
     }
 }

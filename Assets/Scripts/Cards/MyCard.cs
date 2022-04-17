@@ -51,7 +51,7 @@ public class MyCard : MonoBehaviour
 
     // 寒冰
     public int ice;
-    public bool icebound = false;
+    public bool freezed = false;
     public int iceboundFactor = 1;
 
     // 石化
@@ -185,9 +185,9 @@ public class MyCard : MonoBehaviour
         {
             if (!burn && GetFire() >= 10)
             {
-                if (icebound)
+                if (freezed)
                 {
-                    icebound = false;
+                    freezed = false;
                     AddIce(10);
                 }
                 BurnCard();
@@ -201,7 +201,7 @@ public class MyCard : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.E))
         {
-            if (!icebound && GetIce() >= 10)
+            if (!freezed && GetIce() >= 10)
             {
                 if (burn)
                 {
@@ -211,9 +211,9 @@ public class MyCard : MonoBehaviour
                 FreezeCard();
                 return;
             }
-            else if (icebound)
+            else if (freezed)
             {
-                icebound = false;
+                freezed = false;
                 AddIce(10);
             }
         }
@@ -247,9 +247,12 @@ public class MyCard : MonoBehaviour
     private void PointerUp(BaseEventData arg0)
     {
         MyCard _other;
-        if (UIManager.Instance.objBePointed.TryGetComponent(out _other))
+        if (Input.GetKey(KeyCode.Q))
         {
-            DeckManager.Instance.SwitchCard(_other.position, position);
+            if (UIManager.Instance.objBePointed.TryGetComponent(out _other))
+            {
+                DeckManager.Instance.SwitchCard(_other.position, position);
+            }
         }
     }
     private void PointerDown(BaseEventData arg0)
@@ -289,7 +292,7 @@ public class MyCard : MonoBehaviour
         if (_damage > 0)
         {
             OnCauseDamage();
-            if (icebound)
+            if (freezed)
             {
                 GetArmor(_damage * iceboundFactor);
             }
@@ -308,7 +311,7 @@ public class MyCard : MonoBehaviour
         if (_damage > 0)
         {
             OnCauseDamage();
-            if (icebound)
+            if (freezed)
             {
                 GetArmor(_damage * iceboundFactor);
             }
@@ -338,55 +341,38 @@ public class MyCard : MonoBehaviour
     #region 战斗相关的状态事件
     public void BurnButton()
     {
-        if (!burn && GetFire() >= 10)
+        if (cardName == "献祭之刃")
         {
-            if (icebound)
-            {
-                icebound = false;
-                AddIce(10);
-            }
             BurnCard();
             return;
         }
-        else if (burn)
+        else if (!burn && GetFire() >= 10)
         {
-            burn = false;
-            AddFire(10);
-            if(stoned){
-                stone = true;
-            }
+            BurnCard();
+            AddFire(-10);
         }
     }
     public void IceButton()
     {
-        if (!icebound && GetIce() >= 10)
+        if (cardName == "冰封术")
         {
-            if (burn)
-            {
-                burn = false;
-                AddFire(10);
-            }
             FreezeCard();
             return;
         }
-        else if (icebound)
+        else if (!freezed && GetIce() >= 10)
         {
-            icebound = false;
-            AddIce(10);
-            if(stoned){
-                stone = true;
-            }
+            FreezeCard();
+            AddIce(-10);
         }
     }
     protected virtual void BurnCard()
     {
         SoundManager.Instance.BurnCard();
         burn = true;
-        icebound = false;
+        freezed = false;
         stone = false;
         string _s = string.Format("【{0}】燃烧了", cardName);
         TipManager.ShowTip(_s);
-        AddFire(-10);
     }
     protected virtual void OnCardBurn()
     {
@@ -396,16 +382,15 @@ public class MyCard : MonoBehaviour
     {
         SoundManager.Instance.FreezeCard();
         burn = false;
-        icebound = true;
+        freezed = true;
         stone = false;
         string _s = string.Format("【{0}】冰封了", cardName);
         TipManager.ShowTip(_s);
-        AddIce(-10);
     }
 
     public virtual void StoneCard(){
         burn = false;
-        icebound = false;
+        freezed = false;
         stone = true;
         stoned = true;
         string _s = string.Format("【{0}】石化了", cardName);
@@ -492,7 +477,7 @@ public class MyCard : MonoBehaviour
     public void AddIce(int num) { BattleManager.Instance.player.ice += num; }
     public bool IsStartCard()
     {
-        return BattleManager.Instance.maxPlayerCardTime - 1 == BattleManager.Instance.playCardTime;
+        return BattleManager.Instance.maxPlayerCardTime == BattleManager.Instance.playCardTime;
     }
     public bool IsEndCard()
     {

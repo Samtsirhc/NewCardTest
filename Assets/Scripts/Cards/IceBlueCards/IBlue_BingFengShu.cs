@@ -29,7 +29,7 @@ public class IBlue_BingFengShu : IceBlueCard
     {
         base.OnUse();
         CastDamage(damage);
-        if (icebound)
+        if (freezed)
         {
             BattleManager.Instance.player.ice += ice;
         }

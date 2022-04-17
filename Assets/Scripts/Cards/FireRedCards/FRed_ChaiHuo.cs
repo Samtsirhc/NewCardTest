@@ -12,12 +12,12 @@ public class FRed_ChaiHuo : FireRedCard
         if (_left != null)
         {
             _left.burn = true;
-            _left.icebound = false;
+            _left.freezed = false;
         }
         if (_right != null)
         {
             _right.burn = true;
-            _right.icebound = false;
+            _right.freezed = false;
         }
         DeleteSelf();
     }

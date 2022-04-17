@@ -136,7 +136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7091982074015172120, guid: cd60b256bb623fe46aa1f46f33ca180c, type: 3}
       propertyPath: playTimes
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7091982074015172120, guid: cd60b256bb623fe46aa1f46f33ca180c, type: 3}
       propertyPath: cardLayout
@@ -148,7 +148,7 @@ PrefabInstance:
       objectReference: {fileID: 4263522474063972596, guid: 407f289f735b49e4fa5f3c4bf2172839, type: 3}
     - target: {fileID: 7091982074015172120, guid: cd60b256bb623fe46aa1f46f33ca180c, type: 3}
       propertyPath: maxFlowLenth
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7091982074015172120, guid: cd60b256bb623fe46aa1f46f33ca180c, type: 3}
       propertyPath: cardPoses.Array.size

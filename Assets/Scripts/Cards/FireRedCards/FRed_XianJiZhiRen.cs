@@ -37,7 +37,7 @@ public class FRed_XianJiZhiRen : FireRedCard
     protected void SacrificeBurn()
     {
         burn = true;
-        icebound = false;
+        freezed = false;
         DamageSelf(selfDamage);
     }
 

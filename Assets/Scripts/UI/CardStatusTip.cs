@@ -22,7 +22,7 @@ public class CardStatusTip : MonoBehaviour
         {
             _s += "È¼ÉÕ";
         }
-        if (myCard.icebound)
+        if (myCard.freezed)
         {
             _s += "±ù·â";
         }

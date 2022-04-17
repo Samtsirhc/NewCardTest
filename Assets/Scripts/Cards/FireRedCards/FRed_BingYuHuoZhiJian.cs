@@ -25,7 +25,7 @@ public class FRed_BingYuHuoZhiJian : FireRedCard
     public override int CastDamage(int num)
     {
         int _damage = 0;
-        if (burn || icebound)
+        if (burn || freezed)
         {
             num *= burnFactor;
             _damage = BattleManager.Instance.enemy.TakeDamage(num);
