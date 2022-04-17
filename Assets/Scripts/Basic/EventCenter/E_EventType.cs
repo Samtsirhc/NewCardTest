@@ -31,5 +31,7 @@ public enum E_EventType
         SHOW_ARROW = 40000,
         UI_POINTER_ENTER = 40001,
         UI_POINTER_OUT = 40002,
+        SHOW_CARDS = 40003,
+        HIDE_CARDS = 40004,
 
 }

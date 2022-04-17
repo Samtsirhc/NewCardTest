@@ -15,6 +15,7 @@ public class DeckManager : Singleton<DeckManager>
     public int PlayCost = 3;
     public int switchIndex = 1;
     public bool descriptionType;
+    public GameObject cardLayout;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +25,7 @@ public class DeckManager : Singleton<DeckManager>
         EventCenter.AddListener<int>(E_EventType.DELETE_CARD, DeleteCard);
         EventCenter.AddListener<int, int>(E_EventType.SWITCH_CARD, SwitchCard);
         EventCenter.AddListener<MyCard>(E_EventType.CARD_USED, CardUsed);
+        EventCenter.AddListener(E_EventType.SHOW_CARDS, ShowCards);
 
         InitMyCardPfb();
         myCardInFlow = new List<GameObject>();
@@ -39,6 +41,15 @@ public class DeckManager : Singleton<DeckManager>
         }
         switchIndex = LevelManager.Instance.switchIndex;
         Invoke("DrawAllCard",0.2f);
+    }
+
+    private void ShowCards()
+    {
+        GameObject _layout_obj = Instantiate(cardLayout, GameObject.Find("Canvas").transform);
+        foreach (var item in myCardPfbs)
+        {
+            Instantiate(item, _layout_obj.GetComponent<CardLayOut>().obj.transform);
+        }
     }
 
     private void InitMyCardPfb()
