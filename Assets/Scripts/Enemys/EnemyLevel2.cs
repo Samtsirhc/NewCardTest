@@ -20,7 +20,7 @@ public class EnemyLevel2 : Enemy
                 break;
             case 2:
                 AttackPlayer(12);
-                //石化
+                StoneCard(0);
                 nextAct = "防御8";
                 break;
             case 3:
@@ -33,7 +33,7 @@ public class EnemyLevel2 : Enemy
                 break;
             case 5:
                 AttackPlayer(20);
-                //石化
+                StoneCard(0);
                 nextAct = "攻击14";
                 break;
         }

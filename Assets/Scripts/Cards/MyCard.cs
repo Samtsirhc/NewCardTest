@@ -22,7 +22,7 @@ public class MyCard : MonoBehaviour
     public string originalDescription = "示例卡牌的描述";
     public string tureDescription = "哈哈哈哈哈哈哈哈";
     public bool inBattle = false;
-
+    
     bool playing = false;
     bool played = false;
     float moveSpeed = 20;
@@ -54,6 +54,9 @@ public class MyCard : MonoBehaviour
     public bool icebound = false;
     public int iceboundFactor = 1;
 
+    // 石化
+    public bool stone = false;
+    public bool stoned = false;
     #endregion
 
     #region 其他
@@ -121,9 +124,11 @@ public class MyCard : MonoBehaviour
             if (!played)
             {
                 GetComponent<Animator>().Play("fade");
-                PreUse();
-                OnUse();
-                AfterUse();
+                if(!stone){
+                    PreUse();
+                    OnUse();
+                    AfterUse();
+                }
                 EventCenter.Broadcast<MyCard>(E_EventType.CARD_USED, this);
                 played = true;
             }
@@ -210,6 +215,9 @@ public class MyCard : MonoBehaviour
                 icebound = false;
                 AddIce(10);
             }
+        }
+        else if (Input.GetKey(KeyCode.T)){
+            StoneCard();
         }
         // else if (Input.GetKey(KeyCode.R))
         // {
@@ -343,6 +351,9 @@ public class MyCard : MonoBehaviour
         {
             burn = false;
             AddFire(10);
+            if(stoned){
+                stone = true;
+            }
         }
     }
     public void IceButton()
@@ -361,6 +372,9 @@ public class MyCard : MonoBehaviour
         {
             icebound = false;
             AddIce(10);
+            if(stoned){
+                stone = true;
+            }
         }
     }
     protected virtual void BurnCard()
@@ -368,6 +382,7 @@ public class MyCard : MonoBehaviour
         SoundManager.Instance.BurnCard();
         burn = true;
         icebound = false;
+        stone = false;
         string _s = string.Format("【{0}】燃烧了", cardName);
         TipManager.ShowTip(_s);
         AddFire(-10);
@@ -381,9 +396,19 @@ public class MyCard : MonoBehaviour
         SoundManager.Instance.FreezeCard();
         burn = false;
         icebound = true;
+        stone = false;
         string _s = string.Format("【{0}】冰封了", cardName);
         TipManager.ShowTip(_s);
         AddIce(-10);
+    }
+
+    public virtual void StoneCard(){
+        burn = false;
+        icebound = false;
+        stone = true;
+        stoned = true;
+        string _s = string.Format("【{0}】石化了", cardName);
+        TipManager.ShowTip(_s);
     }
     #endregion
 
@@ -407,6 +432,9 @@ public class MyCard : MonoBehaviour
     }
     public virtual void TriggerCard()
     {
+        if(stone){
+            return;
+        }
         PreUse();
         OnUse();
         AfterUse();

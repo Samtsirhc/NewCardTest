@@ -26,6 +26,10 @@ public class CardStatusTip : MonoBehaviour
         {
             _s += "±ù·â";
         }
+        if (myCard.stone)
+        {
+            _s += "Ê¯»¯";
+        }
         text.text = _s;
     }
 }

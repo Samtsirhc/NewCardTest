@@ -42,8 +42,6 @@ public class Enemy : Unit
     {
         player.TakeDamage(num);
         PlayAttack();
-
-
     }
     public void GetArmor(int num)
     {
@@ -66,5 +64,13 @@ public class Enemy : Unit
     public void StealAllArmor()
     {
         StealArmor(player.armor);
+    }
+    
+    public void StoneCard(int index)
+    {
+        if(index >= DeckManager.Instance.maxFlowLenth || index < 0){
+            return;
+        }
+        DeckManager.Instance.myCardInFlow[index].GetComponent<MyCard>().StoneCard();
     }
 }
