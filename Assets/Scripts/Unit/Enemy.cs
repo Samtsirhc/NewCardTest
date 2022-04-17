@@ -29,15 +29,19 @@ public class Enemy : Unit
     protected virtual void OnEnemyTurn()
     {
         armor = 0;
-        EnemyAct();
+        if(hp<=0){
+            GameObject.Find("Canvas").transform.Find("NextLevel").gameObject.SetActive(true);
+        }
+        else{
+            EnemyAct();
+        }
+
         EventCenter.Broadcast(E_EventType.END_TURN);
     }
 
     protected virtual void EnemyAct()
     {
-        if(hp<=0){
-            GameObject.Find("Canvas").transform.Find("NextLevel").gameObject.SetActive(true);
-        }
+        
     }
     public void AttackPlayer(int num)
     {
